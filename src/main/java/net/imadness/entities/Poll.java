@@ -2,22 +2,20 @@ package net.imadness.entities;
 
 import java.util.List;
 
+/**
+ * Класс-сущность, описывающий опрос
+ */
 public class Poll {
 
     private Long id;
     private String name;
     private String description;
     private List<Respondent> respondents;
+    private List<Question> questions;
 
     public Poll() {}
 
     public Poll(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
-
-    public Poll(Long id, String name, String description) {
-        this.id = id;
         this.name = name;
         this.description = description;
     }
@@ -52,6 +50,14 @@ public class Poll {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
     }
 
     @Override

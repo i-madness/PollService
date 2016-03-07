@@ -1,9 +1,8 @@
-package net.imadness.services;
+package net.imadness.services.dal;
 
 import net.imadness.entities.Option;
 import net.imadness.entities.Poll;
 import net.imadness.entities.Respondent;
-import net.imadness.mappers.OptionMapper;
 import net.imadness.mappers.RespondentMapper;
 import net.imadness.mappers.extended.PollRespondentMapper;
 import net.imadness.mappers.extended.RespondentOptionMapper;

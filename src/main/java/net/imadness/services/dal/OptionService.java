@@ -1,11 +1,10 @@
-package net.imadness.services;
+package net.imadness.services.dal;
 
 import net.imadness.entities.Option;
 import net.imadness.entities.Respondent;
 import net.imadness.mappers.OptionMapper;
 import net.imadness.mappers.extended.RespondentOptionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

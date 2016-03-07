@@ -2,6 +2,9 @@ package net.imadness.entities;
 
 import java.util.List;
 
+/**
+ * Класс-сущность, описывающий вопрос из конкретного опроса
+ */
 public class Question {
     private Long id;
     private String name;

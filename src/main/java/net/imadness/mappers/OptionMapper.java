@@ -1,10 +1,14 @@
 package net.imadness.mappers;
 
 import net.imadness.entities.Option;
+import net.imadness.entities.Question;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+/**
+ * DAO-интерфейс для доступа к сущности Option в БД
+ */
 public interface OptionMapper {
 
     @Select("SELECT * FROM option")
@@ -23,7 +27,7 @@ public interface OptionMapper {
     @Delete("DELETE FROM option WHERE id=#{id}")
     public void deleteOption(@Param("id") Long id);
 
-    @Select("SELECT * FROM option WHERE questionid={questionid} ")
-    public List<Option> getOptionsForQuestion(@Param("questionid") Long questionId);
+    @Select("SELECT * FROM option WHERE questionid=#{question.id} ")
+    public List<Option> getOptionsForQuestion(@Param("question")Question question);
 
 }

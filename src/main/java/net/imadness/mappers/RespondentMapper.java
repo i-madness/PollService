@@ -8,7 +8,7 @@ import org.apache.ibatis.type.JdbcType;
 import java.util.List;
 
 /**
- * Created by Валерий on 05.03.2016.
+ * DAO-интерфейс для доступа к сущности Respondent в БД
  */
 public interface RespondentMapper {
 

@@ -5,6 +5,9 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+/**
+ * DAO-интерфейс для доступа к сущности Poll в БД
+ */
 public interface PollMapper {
 
     @Select("SELECT * FROM poll")
