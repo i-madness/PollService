@@ -34,7 +34,7 @@ public class RespondentService {
         return result;
     }
 
-    public void updateOption(Respondent respondent) {
+    public void updateRespondent(Respondent respondent) {
         respondentMapper.updateRespondent(respondent);
     }
 

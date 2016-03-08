@@ -16,7 +16,7 @@ public interface PollMapper {
     @Select("SELECT * FROM poll WHERE id=#{id}")
     public Poll getPollById(@Param("id") Long id);
 
-    @Update("UPDATE poll SET content=#{poll.name}, description=#{description} WHERE id=#{poll.id}")
+    @Update("UPDATE poll SET name=#{poll.name}, description=#{poll.description} WHERE id=#{poll.id}")
     public void updatePoll(@Param("poll") Poll poll);
 
     @Insert("INSERT INTO poll (name,description) VALUES(#{poll.name}, #{poll.description})")

@@ -20,7 +20,7 @@ public interface OptionMapper {
     @Update("UPDATE option SET content=#{option.content}, isright=#{option.isRight} WHERE id=#{option.id}")
     public void updateOption(@Param("option") Option option);
 
-    @Insert("INSERT INTO option (content,isright) VALUES(#{option.content}, #{option.isRight})")
+    @Insert("INSERT INTO option (content,isright,questionid) VALUES(#{option.content}, #{option.isRight}, #{option.question.id})")
     @Options(useGeneratedKeys=true, keyProperty = "option.id")
     public void addOption(@Param("option") Option option);
 

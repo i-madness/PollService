@@ -32,11 +32,12 @@ public class PollService {
      */
     private void updateAllDependencies(Poll poll) {
         for (Question question : poll.getQuestions()) {
-            if (question.getId() != null)
+            if (question.getId() != 0)
                 questionMapper.updateQuestion(question);
             else questionMapper.addQuestion(question,poll);
             for (Option option : question.getOptions()) {
-                if(option.getId() != null)
+                option.setQuestion(question);
+                if(option.getId() != 0)
                     optionMapper.updateOption(option);
                 else optionMapper.addOption(option);
             }

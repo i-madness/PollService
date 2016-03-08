@@ -1,5 +1,6 @@
 package net.imadness.controllers;
 
+import net.imadness.entities.Option;
 import net.imadness.entities.Poll;
 import net.imadness.entities.Question;
 import net.imadness.services.dal.OptionService;
@@ -62,9 +63,11 @@ public class PollManagementController {
      * @param poll json объект Poll
      * @return перенаправление на страницу настроек
      */
-    @RequestMapping(value = "/manage/save")
+    @RequestMapping(value = "/manage/save", method = RequestMethod.POST, headers = "Accept=application/json")
     public String savePoll(@RequestBody Poll poll) {
-        pollService.addPoll(poll);
+        if (poll.getId()==null)
+            pollService.addPollFullStructure(poll);
+        else pollService.updatePollFullStructure(poll);
         return "redirect:/manage";
     }
 
@@ -86,21 +89,24 @@ public class PollManagementController {
         return questionService.getQuestionById(id);
     }
 
+    // Mapping для запросов на удаление
     @RequestMapping("/manage/deletepoll/{id}")
-    public String deletePoll(@PathVariable Long id, @RequestParam String login, @RequestParam String password) {
-        if(adminPreferencesService.preferencesEqual(login,password)) {
+    public String deletePoll(@PathVariable Long id/*, @RequestParam String login, @RequestParam String password*/) {
+        //if(adminPreferencesService.preferencesEqual(login,password)) {
             pollService.deletePoll(id);
             return "redirect:/manage";
-        }
-        return "redirect:/";
+        //}
+        //return "redirect:/";
+    }
+    @RequestMapping("/manage/deletequestion/{id}")
+    public String deleteQuestion(@PathVariable Long id) {
+        questionService.deleteQuestion(id);
+        return "redirect:/manage";
+    }
+    @RequestMapping("/manage/deleteoption/{id}")
+    public String deleteOption(@PathVariable Long id) {
+        optionService.deleteOption(id);
+        return "redirect:/manage";
     }
 
-/*    @RequestMapping("/manage/delete-poll/{id}")
-    public String deleteQuestion(@PathVariable Long id, @RequestParam String login, @RequestParam String password) {
-        if(adminPreferencesService.preferencesEqual(login,password)) {
-            questionService.deleteQuestion(id);
-            return "redirect:/manage";
-        }
-        return "redirect:/";
-    }*/
 }

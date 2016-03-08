@@ -6376,6 +6376,10 @@ button.close {
 }
 #poll-name {
     float: left;
+    resize: none;
+}
+#poll-description {
+    resize: none;
 }
 #question-body {
     display: none;
@@ -6385,5 +6389,11 @@ button.close {
 }
 .floating-button {
     float: right;
+}
+.editing-data {
+    text-decoration: underline;
+}
+.editing-data:hover {
+    color: #2a6496;
 }
 /*# sourceMappingURL=bootstrap.css.map */
