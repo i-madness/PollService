@@ -1,27 +1,35 @@
 package net.imadness.entities.extended;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import net.imadness.entities.Poll;
 import net.imadness.entities.Respondent;
-import org.apache.ibatis.annotations.Options;
 
+import java.util.List;
+
+/**
+ * Класс, необходимый для передачи данных об участнике опроса и его ответах через JSON в виде одного объекта
+ */
 public class ResultHolder {
-    private Poll poll;
     private Respondent respondent;
-    private Options options;
+    private List<Long> optionIds;
 
-    public ResultHolder(Poll poll, Respondent respondent, Options options) {
-        this.poll = poll;
+    public ResultHolder() {}
+
+    public ResultHolder(Respondent respondent, List<Long> options) {
+        //this.poll = poll;
         this.respondent = respondent;
-        this.options = options;
+        this.optionIds = options;
     }
 
-    public Poll getPoll() {
+    /*public Poll getPoll() {
         return poll;
-    }
+    }*/
 
-    public void setPoll(Poll poll) {
+    /*public void setPoll(Poll poll) {
         this.poll = poll;
-    }
+    }*/
 
     public Respondent getRespondent() {
         return respondent;
@@ -31,11 +39,11 @@ public class ResultHolder {
         this.respondent = respondent;
     }
 
-    public Options getOptions() {
-        return options;
+    public List<Long> getOptions() {
+        return optionIds;
     }
 
-    public void setOptions(Options options) {
-        this.options = options;
+    public void setOptions(List<Long> options) {
+        this.optionIds = options;
     }
 }

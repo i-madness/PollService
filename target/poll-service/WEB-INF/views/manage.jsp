@@ -29,7 +29,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><img height="35" src="/resources/img/sLogo_final.png"></a>
+            <a class="navbar-brand" href="/"><img height="35" src="/resources/img/sLogo_final.png"></a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -237,11 +237,6 @@
             contentType: 'application/json',
             data: parsePollForm(),
             success: location.reload()
-                /*$('#save-poll').hide();
-                $('#add-quest').hide();
-                $('#poll-name').removeClass('editing-data');
-                $('#poll-description').removeClass('editing-data');
-                editState = false;*/
         });
         deletedOptions = []; deletedQuestions = [];
         /*$.post('/manage/save',parsePollForm(), function() {

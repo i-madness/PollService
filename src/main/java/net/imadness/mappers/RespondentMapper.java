@@ -13,7 +13,7 @@ import java.util.List;
 public interface RespondentMapper {
 
     @Select("SELECT * FROM respondent")
-    @Results(value = {
+    /*@Results(value = {
             @Result(property = "id",      column = "poll_id", javaType = Long.class, jdbcType = JdbcType.BIGINT),
             @Result(property = "name",    column = "name"),
             @Result(property = "email",   column = "email"),
@@ -22,7 +22,7 @@ public interface RespondentMapper {
                     many  = @Many(select = "net.imadness.mappers.extended.PollRespondentMapper.getPollsByRespondent")),
             //@Result(property = "options", column = "options", javaType = List.class,
             //        many = @Many(select = "net.imadness.mappers.OptionMapper.getOptionsOfRespondent"))
-    })
+    })*/
     public List<Respondent> getAllRespondents();
 
     @Select("SELECT * FROM respondent WHERE id=#{id}")

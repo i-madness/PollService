@@ -6396,4 +6396,11 @@ button.close {
 .editing-data:hover {
     color: #2a6496;
 }
+.complete-btn {
+    width: 25%;
+}
+#clear {
+    display: none;
+
+}
 /*# sourceMappingURL=bootstrap.css.map */

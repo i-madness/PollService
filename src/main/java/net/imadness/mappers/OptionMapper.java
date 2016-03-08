@@ -17,7 +17,7 @@ public interface OptionMapper {
     @Select("SELECT * FROM option WHERE id=#{id}")
     public Option getOptionById(@Param("id") Long id);
 
-    @Update("UPDATE option SET content=#{option.content}, isright=#{option.isRight} WHERE id=#{option.id}")
+    @Update("UPDATE option SET content=#{option.content}, isright=#{option.isRight}, questionid=#{option.question.id} WHERE id=#{option.id}")
     public void updateOption(@Param("option") Option option);
 
     @Insert("INSERT INTO option (content,isright,questionid) VALUES(#{option.content}, #{option.isRight}, #{option.question.id})")
