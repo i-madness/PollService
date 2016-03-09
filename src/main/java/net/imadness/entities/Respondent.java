@@ -3,22 +3,20 @@ package net.imadness.entities;
 import java.util.List;
 
 /**
- * Класс сущность, описывающий опрашиваемого пользователя
+ * Класс-сущность, описывающий опрашиваемого пользователя
  */
 public class Respondent {
     private Long id;
     private String name;
     private String email;
-    private String ipAddress;
     private List<Poll> polls;
     private List<Option> answers;
 
     public Respondent() {}
 
-    public Respondent(String name, String email, String ipAddress) {
+    public Respondent(String name, String email) {
         this.name = name;
         this.email = email;
-        this.ipAddress = ipAddress;
     }
 
     public Long getId() {

@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+/**
+ * Контроллер для главной страницы приложения
+ */
 @Controller
 public class HomeController {
 
@@ -16,7 +19,7 @@ public class HomeController {
     private PollService pollService;
 
     /**
-     * Помещает опросы и их описание на главную страницу
+     * Помещает опросы и их описание на главную страницу в виде списка
      */
 	@RequestMapping("/")
 	public String prepareHomepageView(ModelMap model) {

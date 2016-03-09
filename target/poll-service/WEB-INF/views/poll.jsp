@@ -42,6 +42,15 @@
     </div>
 </div>
 
+<div class="page-header" style="display: none">
+    Результат прохождения опроса ${poll.name}:
+    <div class="progress progress-striped">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+
+        </div>
+    </div>
+</div>
+
 <div class="container col-md-8 col-lg-offset-2" style="margin-top: 20px;">
     <div class="panel panel-default">
         <div class="panel-heading"><h3><c:out value="${poll.name}"/></h3></div>
@@ -49,7 +58,7 @@
     </div>
     <div class="col-md-offset-1 col-md-10"><%--Container for questions--%>
         <c:forEach var="question" items="${poll.questions}">
-            <div class="panel panel-default">
+            <div data-id="${question.id}" class="question-panel panel panel-default">
                 <div class="panel-heading"><h4><c:out value="${question.name}"/></h4></div>
                 <div class="panel-body">
                     <c:forEach var="option" items="${question.options}">
@@ -64,7 +73,7 @@
     </div>
     <div align="center">
         <form action="/poll/${id}/results" method="get">
-            <input type="submit" id="complete-btn" class="btn btn-info" value="Завершить прохождение опроса"/>
+            <input id="complete-btn" class="btn btn-info" value="Завершить прохождение опроса"/>
         </form>
     </div>
 
@@ -95,40 +104,26 @@
 </div>
 
 <script>
-    var respondent = null; var answers = [];
-    if (document.cookie.indexOf("resp=; email=")==-1) {
-        var cookies = document.cookie.split(";")
-        respondent = {
-            id: 0,
-            name: cookies[0],
-            email: cookies[1],
-            polls: null,
-            //ipaddress: null,
-            answers: null }
-        $('#clear').show();
-    } else {
-        $(document).ready(function () {
-            $('#respondent-modal').modal({
-                keyboard: false,
-                backdrop: "static"
-            });
+    var respondent = null; var answers = []; var rightAnswers = []
+    var rightCount = 0;
+
+    $(document).ready(function () {
+        $('#respondent-modal').modal({
+            keyboard: false,
+            backdrop: "static"
         });
-    }
-    $('body').on('click','#clear',function() {
-        document.cookie = "resp=; expires=-1"
-        document.cookie = "email=; expires=-1"
     });
+
     $('body').on('click','#accept-data',function(){
         var respondentName = $('#respondent-name').val();
         var email = $('#respondent-email').val();
-        var dataStorageTime = new Date();
-        dataStorageTime.setDate(dataStorageTime.getDate()+30);
-        document.cookie = "resp="+respondentName+"; expires="+dataStorageTime.toUTCString();
-        document.cookie = "email="+email+"; expires="+dataStorageTime.toUTCString()
+
         respondent = { id: 0, name: respondentName, email: email, /*ipaddress: null,*/ polls: null, answers: null };
         $('#respondent-modal').modal('hide');
     });
-    $('#complete-btn').submit(function(){
+
+    // завершение прохождения опроса: отправка данных на сервер, получение правильных ответов и отображение результатов
+    $('body').on('click','#complete-btn',function(){
         if(respondent == null)
             location.reload();
         else {
@@ -139,11 +134,28 @@
             var holder = { respondent: respondent, options: answers };
             $.ajax({
                 type: 'POST',
-                url: "/poll/${id}/results",
+                url: "/poll/${id}/save",
                 contentType: 'application/json',
                 data: JSON.stringify(holder),
+                success: function() {
+                    $.get("/poll/${id}/getAnswers",function(rightAns) {
+                        // если успешно получили данные об ответах - проводим нужные изменения на странице
+                        $('.page-header').show();
+                        rightAnswers = rightAns;
+                        $('.answer').each(function(){ // для каждого вопроса отображаем, правильный ли ответ
+                            $(this).addClass('disabled');
+                            if($(this).prop('checked') && $.inArray($(this).data('id'),rightAnswers)) {
+                                $(this).parent().parent().parent().parent().addClass('panel-success');
+                                rightCount++;
+                            }
+                            else $(this).parent().parent().parent().parent().addClass('panel-danger');
+                        })
+                        $('.progress-bar').html(rightCount+"/"+answers.length);
+                        $('.progress-bar').prop('aria-valuenow',rightCount/answers.length);
+                        $('html,body').animate({scrollTop: 0},'slow')
+                    });
+                }
             });
-            //$.post(, JSON.stringify(holder));
         }
     });
 </script>

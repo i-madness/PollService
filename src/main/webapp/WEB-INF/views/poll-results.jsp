@@ -43,14 +43,7 @@
 </div>
 
 <div class="container col-md-8 col-lg-offset-2" style="margin-top: 20px;">
-    <div class="page-header">
-        Результат прохождения опроса ${poll.name}:
-        <div class="progress progress-striped">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${percent}" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                ${percent}%
-            </div>
-        </div>
-    </div>
+
     <div class="col-md-offset-1 col-md-10"><%--Container for questions--%>
         <c:forEach var="question" items="${poll.questions}">
             <div class="panel panel-default">

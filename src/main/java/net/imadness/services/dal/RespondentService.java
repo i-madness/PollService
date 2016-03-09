@@ -24,7 +24,8 @@ public class RespondentService {
     private RespondentOptionMapper respondentOptionMapper;
 
     public void addRespondent(Respondent respondent) {
-        respondentMapper.addRespondent(respondent);
+        if(getRespondentByPersonalData(respondent.getName(),respondent.getEmail())==null)
+            respondentMapper.addRespondent(respondent);
     }
 
     public Respondent getRespondentById(long id) {
@@ -32,6 +33,10 @@ public class RespondentService {
         if (result != null)
             result.setPolls(pollRespondentMapper.getPollsForRespondent(id));
         return result;
+    }
+
+    public Respondent getRespondentByPersonalData(String name, String email) {
+        return respondentMapper.getRespondentByPersonalData(name,email);
     }
 
     public void updateRespondent(Respondent respondent) {

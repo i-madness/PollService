@@ -239,9 +239,6 @@
             success: location.reload()
         });
         deletedOptions = []; deletedQuestions = [];
-        /*$.post('/manage/save',parsePollForm(), function() {
-
-        });*/
     });
 
     // удаление варианта ответа

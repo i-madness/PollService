@@ -51,4 +51,8 @@ public class OptionService {
         return respondentOptionMapper.getOptionsForRespondent(respondent.getId());
     }
 
+    public void insertRespondentOption(Long respondentId, Long optionId) {
+        respondentOptionMapper.insertRespondentOption(respondentId,optionId);
+    }
+
 }

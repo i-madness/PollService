@@ -21,4 +21,7 @@ public interface RespondentOptionMapper {
             "SELECT respondentid FROM respondent_option WHERE optionid=#{optionId})")
     public List<Respondent> getRespondentsForOption(@Param("optionId") Long optionId);
 
+    @Insert("INSERT INTO respondent_option(respondentid,optionid) VALUES(#{respondentId},#{optionId})")
+    public void insertRespondentOption(@Param("respondentId") Long respondentId, @Param("optionId") Long optionId);
+
 }

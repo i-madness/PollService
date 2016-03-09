@@ -23,14 +23,6 @@ public class ResultHolder {
         this.optionIds = options;
     }
 
-    /*public Poll getPoll() {
-        return poll;
-    }*/
-
-    /*public void setPoll(Poll poll) {
-        this.poll = poll;
-    }*/
-
     public Respondent getRespondent() {
         return respondent;
     }
