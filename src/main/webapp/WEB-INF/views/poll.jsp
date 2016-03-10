@@ -42,10 +42,11 @@
     </div>
 </div>
 
-<div class="page-header" style="display: none">
-    Результат прохождения опроса ${poll.name}:
+<div class="page-header  col-md-8 col-lg-offset-2" style="display: none">
+    <h3><small></small><br>
+        Ваш результат прохождения опроса "${poll.name}":</h3>
     <div class="progress progress-striped">
-        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 100%; min-width: 20%">
 
         </div>
     </div>
@@ -104,6 +105,53 @@
 <script>
     var respondent = null; var answers = []; var rightAnswers = []
     var rightCount = 0;
+    // получает правильные ответы с сервера, сверяет их с пользовательскими и проводит нужные изменения на странице
+    var getAnswers = function() {
+        $.get("/poll/${id}/getAnswers",function(rightAns){
+            $('.page-header').show();
+            rightAnswers = rightAns;
+            $('.question-panel').each(function(){ // для каждого вопроса отображаем, правильный ли ответ
+                var isCorrect = false;
+                $(this).find('.answer').each(function(){
+                    $(this).addClass('disabled');
+                    if($(this).prop('checked')) {
+
+                        if($.inArray($(this).data('id'),rightAnswers)!=-1) {
+                            rightCount++;
+                            $(this).parent().parent().append('<span class="input-group-addon label-success correct-indicator"><span class="glyphicon glyphicon-ok"></span></span>');
+                            //$(indicator).addClass('label-success');
+                            //$(indicator).html('<span class="glyphicon glyphicon-ok"></span>');
+                            //$(indicator).css('visibility','visible');
+                            isCorrect = true;
+                        }
+                        else
+                            $(this).parent().parent().append('<span class="input-group-addon label-danger correct-indicator"><span class="glyphicon glyphicon-remove"></span></span>');
+                            //$(indicator).addClass('label-danger');
+                            //$(indicator).html('<span class="glyphicon glyphicon-remove"></span>');
+                            //$(indicator).css('visibility','visible');
+                    }
+                })
+                if (isCorrect) {
+                    $(this).addClass('panel-success');
+                    return;
+                }
+                else
+                    $(this).addClass('panel-danger')
+            })
+            $('#complete-btn').addClass('disabled');
+            $('small').html(respondent.name+',');
+            $('.progress-bar').html(rightCount+" правильных ответов из "+answers.length);
+            var percent = 100*rightCount/rightAns.length;
+            if(percent > 0)
+                $('.progress-bar').css('width', percent+'%').attr('aria-valuenow', percent);
+            else {
+                $('.progress-bar').removeClass('progress-bar-success');
+                $('.progress-bar').addClass('progress-bar-danger')
+            }
+            $('html,body').animate({scrollTop: 0},'slow')
+        })
+    }
+
 
     $(document).ready(function () {
         $('#respondent-modal').modal({
@@ -135,24 +183,7 @@
                 url: "/poll/${id}/save",
                 contentType: 'application/json',
                 data: JSON.stringify(holder),
-                success: function() {
-                    $.get("/poll/${id}/getAnswers",function(rightAns) {
-                        // если успешно получили данные об ответах - проводим нужные изменения на странице
-                        $('.page-header').show();
-                        rightAnswers = rightAns;
-                        $('.answer').each(function(){ // для каждого вопроса отображаем, правильный ли ответ
-                            $(this).addClass('disabled');
-                            if($(this).prop('checked') && $.inArray($(this).data('id'),rightAnswers)) {
-                                $(this).parent().parent().parent().parent().addClass('panel-success');
-                                rightCount++;
-                            }
-                            else $(this).parent().parent().parent().parent().addClass('panel-danger');
-                        })
-                        $('.progress-bar').html(rightCount+"/"+answers.length);
-                        $('.progress-bar').prop('aria-valuenow',rightCount/answers.length);
-                        $('html,body').animate({scrollTop: 0},'slow')
-                    });
-                }
+                success: getAnswers()
             });
         }
     });

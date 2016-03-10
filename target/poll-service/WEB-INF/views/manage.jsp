@@ -137,7 +137,7 @@
         var questionPanels = $('.question-panel');
         var questions = [];
         for (var i = 0; i < $('.question-panel').length; i++) {
-            var optionPanels = $(questionPanels[i]).children('.panel-body').eq(0).children('.opt-panel');
+            var optionPanels = $(questionPanels[i]).find('.opt-panel');
             var _options = [];
             for (var j = 0; j < optionPanels.length; j++) {
                 _options.push({
@@ -277,13 +277,22 @@
     // изменение описания опроса
     $('body').on('click','#poll-description',function(){
         if (editState) {
-            $('#poll-description').html(prompt("Изменение описания опроса:",$('#poll-description').html()))
+            var pollName = prompt("Изменение описания опроса:",$('#poll-description').html())
+            if (pollName = "") pollName = "(описание отсутствует)"
+            $('#poll-description').html(pollName)
         }
     })
 
     // изменение названия вопроса
     $('body').on('click','.floating-title',function(){
-        $(this).html(prompt("Изменение названия вопроса:",$(this).html()))
+        if (editState) {
+            var questionName = prompt("Изменение названия вопроса:",$(this).html())
+            if (questionName == "") {
+                alert("Название вопроса не может быть пустым!")
+                return
+            }
+            $(this).html(questionName)
+        }
     })
 
     // добавление нового опроса

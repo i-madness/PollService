@@ -6401,6 +6401,9 @@ button.close {
 }
 #clear {
     display: none;
-
+}
+.correct-indicator {
+    /*visibility: hidden;*/
+    color: #ffffff;
 }
 /*# sourceMappingURL=bootstrap.css.map */
