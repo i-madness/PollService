@@ -1230,7 +1230,7 @@ a.bg-danger:hover {
 }
 .page-header {
   padding-bottom: 9px;
-  margin: 40px 0 20px;
+  margin: 10px 0 20px;
   border-bottom: 1px solid #eee;
 }
 ul,
@@ -6396,8 +6396,9 @@ button.close {
 .editing-data:hover {
     color: #2a6496;
 }
-.complete-btn {
+#complete-btn {
     width: 25%;
+    margin-bottom: 25px;
 }
 #clear {
     display: none;
@@ -6405,5 +6406,11 @@ button.close {
 .correct-indicator {
     /*visibility: hidden;*/
     color: #ffffff;
+}
+#download-stats {
+    display: none;
+}
+#pol-info {
+
 }
 /*# sourceMappingURL=bootstrap.css.map */

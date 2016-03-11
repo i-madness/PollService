@@ -34,11 +34,15 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/">Опросы</a></li>
-                <li><a href="/results">Результаты</a></li>
                 <li class="active"><a href="/manage">Управление</a></li>
+                <li><a href="/manage/stats">Статистика</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
+</div>
+
+<div class="page-header col-md-8 col-md-offset-2">
+    <h3>Управление опросами</h3>
 </div>
 
 <div class="container col-md-8 col-md-offset-2" style="margin-top: 20px;">
@@ -236,7 +240,7 @@
             url: '/manage/save',
             contentType: 'application/json',
             data: parsePollForm(),
-            success: location.reload()
+            success: location.href = "/manage"
         });
         deletedOptions = []; deletedQuestions = [];
     });

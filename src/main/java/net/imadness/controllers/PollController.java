@@ -75,5 +75,4 @@ public class PollController {
                     answers.add(option.getId());
         return answers;
     }
-
 }

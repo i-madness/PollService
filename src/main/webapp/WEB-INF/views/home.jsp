@@ -34,8 +34,8 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Опросы</a></li>
-                <li><a href="/results">Результаты</a></li>
                 <li><a href="/manage">Управление</a></li>
+                <li><a href="/manage/stats">Статистика</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

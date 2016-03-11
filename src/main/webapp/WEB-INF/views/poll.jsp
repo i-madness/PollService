@@ -34,15 +34,15 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Опросы</a></li>
-                <li><a href="/results">Результаты</a></li>
                 <li><a href="/manage">Управление</a></li>
+                <li><a href="/manage/stats">Статистика</a></li>
                 <li><a class="btn" id="clear" href="#"><span class="glyphicon glyphicon-log-out"></span></a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </div>
 
-<div class="page-header  col-md-8 col-lg-offset-2" style="display: none">
+<div class="page-header col-md-8 col-lg-offset-2" style="display: none">
     <h3><small></small><br>
         Ваш результат прохождения опроса "${poll.name}":</h3>
     <div class="progress progress-striped">
@@ -84,15 +84,15 @@
                 <h4 class="modal-title" id="myModalLabel">Представьтесь, пожалуйста</h4>
             </div>
             <div class="modal-body">
-                <form id="aaa">
-                <div class="input-group">
-                    <span class="input-group-addon">Имя:</span>
-                    <input class="form-control" id="respondent-name">
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon">E-mail:</span>
-                    <input type="email" class="form-control" id="respondent-email">
-                </div>
+                <form id="check-respondent" action="/checkRespondent">
+                    <div class="input-group">
+                        <span class="input-group-addon">Имя:</span>
+                        <input class="form-control" id="respondent-name" data-toggle="tooltip" data-placement="right" title="Должно состоять из русских и латинсих символов и цифр">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">E-mail:</span>
+                        <input type="email" class="form-control" id="respondent-email" data-toggle="tooltip" data-placement="right" title="Введите e-mail">
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -115,20 +115,13 @@
                 $(this).find('.answer').each(function(){
                     $(this).addClass('disabled');
                     if($(this).prop('checked')) {
-
                         if($.inArray($(this).data('id'),rightAnswers)!=-1) {
                             rightCount++;
                             $(this).parent().parent().append('<span class="input-group-addon label-success correct-indicator"><span class="glyphicon glyphicon-ok"></span></span>');
-                            //$(indicator).addClass('label-success');
-                            //$(indicator).html('<span class="glyphicon glyphicon-ok"></span>');
-                            //$(indicator).css('visibility','visible');
                             isCorrect = true;
                         }
                         else
                             $(this).parent().parent().append('<span class="input-group-addon label-danger correct-indicator"><span class="glyphicon glyphicon-remove"></span></span>');
-                            //$(indicator).addClass('label-danger');
-                            //$(indicator).html('<span class="glyphicon glyphicon-remove"></span>');
-                            //$(indicator).css('visibility','visible');
                     }
                 })
                 if (isCorrect) {
@@ -152,18 +145,26 @@
         })
     }
 
-
     $(document).ready(function () {
         $('#respondent-modal').modal({
             keyboard: false,
             backdrop: "static"
         });
+        $('#respondent-name').tooltip();
+        $('#respondent-email').tooltip();
     });
 
     $('body').on('click','#accept-data',function(){
         var respondentName = $('#respondent-name').val();
         var email = $('#respondent-email').val();
-
+        if (!/^[а-яА-ЯёЁa-zA-Z0-9]+$/.test(respondentName)) {
+            $('#respondent-name').tooltip('toggle');
+            return false;
+        }
+        if (!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email)) {
+            $('#respondent-email').tooltip('toggle');
+            return false;
+        }
         respondent = { id: 0, name: respondentName, email: email, /*ipaddress: null,*/ polls: null, answers: null };
         $('#respondent-modal').modal('hide');
     });
