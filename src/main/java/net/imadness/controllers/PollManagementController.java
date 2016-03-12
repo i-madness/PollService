@@ -1,12 +1,10 @@
 package net.imadness.controllers;
 
-import net.imadness.entities.Option;
 import net.imadness.entities.Poll;
 import net.imadness.entities.Question;
 import net.imadness.services.dal.OptionService;
 import net.imadness.services.dal.PollService;
 import net.imadness.services.dal.QuestionService;
-import net.imadness.services.management.AdminPreferencesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,35 +25,15 @@ public class PollManagementController {
     private QuestionService questionService;
     @Autowired
     private OptionService optionService;
-    @Autowired
-    private AdminPreferencesService adminPreferencesService;
 
     /**
-     * Выполняет авторизацию по полученным данным и предоставляет данные по имеющимся опросам
-     * @param login имя администратора
-     * @param password пароль администратора
-     * @return адрес страницы настроек или перенаправление на главную страницу (в зависимости от успешности авторизации)
+     * Помещает список опросов на страницу управления опросами
      */
-    @RequestMapping(value = "/manage" /*method = RequestMethod.POST*/)
-    public String preparePollManagementView(ModelMap model/*, @RequestParam("login") String login, @RequestParam("password") String password*/) {
-        //if(adminPreferencesService.preferencesEqual(login,password)){
-            List<Poll> pollList = pollService.getAllPollsWithoutFetch();
-            model.addAttribute("polls",pollList);
-            return "manage";
-        //}
-        //else return "redirect:/";
-    }
-
-    /**
-     *
-     * @param newLogin новое имя администратора
-     * @param newPassword новый пароль администратора
-     * @return перенаправление на страницу настроек
-     */
-    @RequestMapping(value = "/manage/saveprefs", method = RequestMethod.POST)
-    public String saveAdminPreferences(@RequestParam("login") String newLogin, @RequestParam("password") String newPassword) {
-        adminPreferencesService.setPreferences(newLogin,newPassword);
-        return "redirect:/manage";
+    @RequestMapping(value = "/manage")
+    public String preparePollManagementView(ModelMap model) {
+        List<Poll> pollList = pollService.getAllPollsWithoutFetch();
+        model.addAttribute("polls",pollList);
+        return "manage";
     }
 
     /**
@@ -71,6 +49,9 @@ public class PollManagementController {
         return "redirect:/manage";
     }
 
+    /**
+     * В сохраняет вопрос для конкретно заданного опроса
+     */
     @RequestMapping(value = "/manage/save/{pollId}/question")
     public String saveQuestion(@PathVariable Long pollId, @RequestBody Question question) {
         Poll containingPoll = pollService.getPollById(pollId);
@@ -78,31 +59,36 @@ public class PollManagementController {
         return "redirect:/manage";
     }
 
+    /**
+     * Маппинг запроса на получение опроса
+     */
     @RequestMapping("/manage/getpoll/{id}")
     @ResponseBody
     public Poll getPoll(@PathVariable Long id) {
         return pollService.getPollById(id);
     }
-    @RequestMapping("/manage/getquestion/{id}")
-    @ResponseBody
-    public Question getQuestion(@PathVariable Long id) {
-        return questionService.getQuestionById(id);
+
+    /**
+     * Маппинг запроса на удаление опроса
+     */
+    @RequestMapping("/manage/deletepoll/{id}")
+    public String deletePoll(@PathVariable Long id) {
+        pollService.deletePoll(id);
+        return "redirect:/manage";
     }
 
-    // Mapping для запросов на удаление
-    @RequestMapping("/manage/deletepoll/{id}")
-    public String deletePoll(@PathVariable Long id/*, @RequestParam String login, @RequestParam String password*/) {
-        //if(adminPreferencesService.preferencesEqual(login,password)) {
-            pollService.deletePoll(id);
-            return "redirect:/manage";
-        //}
-        //return "redirect:/";
-    }
+    /**
+     * Маппинг запроса на удаление вопроса
+     */
     @RequestMapping("/manage/deletequestion/{id}")
     public String deleteQuestion(@PathVariable Long id) {
         questionService.deleteQuestion(id);
         return "redirect:/manage";
     }
+
+    /**
+     * Маппинг запроса на удаление варианта ответа
+     */
     @RequestMapping("/manage/deleteoption/{id}")
     public String deleteOption(@PathVariable Long id) {
         optionService.deleteOption(id);
