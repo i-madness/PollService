@@ -4,8 +4,8 @@ var rightAnswers = []
 var rightCount = 0;
 
 // получает правильные ответы с сервера, сверяет их с пользовательскими и проводит нужные изменения на странице
-var getAnswers = function() {
-    $.get("/poll/${id}/getAnswers",function(rightAns){
+var getAnswers = function(poll_id) {
+    $.get("/poll/"+poll_id+"/getAnswers",function(rightAns){
         $('.page-header').show();
         rightAnswers = rightAns;
         $('.question-panel').each(function(){ // для каждого вопроса отображаем, правильный ли ответ
@@ -44,7 +44,7 @@ var getAnswers = function() {
 }
 
 // активация модали и всплывающих подсказок
-$(document).ready(function () {
+$(window).load(function () {
     $('#respondent-modal').modal({
         keyboard: false,
         backdrop: "static"
@@ -65,15 +65,15 @@ $('body').on('click','#accept-data',function(){
         $('#respondent-email').tooltip('toggle');
         return false;
     }
-    respondent = { id: 0, name: respondentName, email: email, /*ipaddress: null,*/ polls: null, answers: null };
+    respondent = { id: 0, name: respondentName, email: email, polls: null, answers: null };
     $('#respondent-modal').modal('hide');
 });
 
 // завершение прохождения опроса: отправка данных на сервер, получение правильных ответов и отображение результатов
-$('body').on('click','#complete-btn',function(){
-    if(respondent == null)
-        location.reload();
-    else {
+var exchangeData = function(poll_id){
+    //if(respondent == null)
+        //location.reload();
+    //else {
         $('.answer').each(function(){
             if($(this).prop('checked'))
                 answers.push($(this).data('id'))
@@ -81,10 +81,10 @@ $('body').on('click','#complete-btn',function(){
         var holder = { respondent: respondent, options: answers };
         $.ajax({
             type: 'POST',
-            url: "/poll/${id}/save",
+            url: "/poll/"+poll_id+"/save",
             contentType: 'application/json',
             data: JSON.stringify(holder),
-            success: getAnswers()
+            success: getAnswers(poll_id)
         });
-    }
-});
+    //}
+};

@@ -4,7 +4,8 @@
 
 <i>Back-end:</i>
 - Java
-- Spring MVC
+- Apache Tomcat 7.0.61
+- Spring MVC Spring 4.0.2
 - MyBatis
 - PostgreSQL
 
@@ -13,6 +14,7 @@
 - Bootstrap
 - jQuery
 
+Для импорта базы данных необходимо воспользоваться файлом дампа <a href="https://github.com/i-madness/PollService/blob/master/create_poll_service_db.sql">create_poll_service_db.sql</a>
 Модель базы данных:
 <img src="http://i.imgur.com/vi4qrzG.png">
 

@@ -11,7 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,8 +55,8 @@ public class StatisticsService {
         byte[] output = stringBuilder.toString().getBytes();
 
         HttpHeaders responseHeaders = new HttpHeaders();
-
-        String fileName = poll.getName().replaceAll("\\p{Cc}", "").replaceAll(" ","_") + ".csv"; // удалить все спецсимволы и пробелы
+        // удалить все спецсимволы и пробелы
+        String fileName = TransliterationService.transliterate(poll.getName().replaceAll("\\p{Cc}", "").replaceAll(" ","_")) + ".csv";
         responseHeaders.set("charset", "utf-8");
         responseHeaders.setContentType(MediaType.valueOf("text/html"));
         responseHeaders.setContentLength(output.length);

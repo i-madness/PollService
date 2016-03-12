@@ -77,33 +77,35 @@
     </div>
 
 
-<div class="modal fade" id="respondent-modal" tabindex="-1" role="dialog"  aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Представьтесь, пожалуйста</h4>
-            </div>
-            <div class="modal-body">
-                <form id="check-respondent" action="/checkRespondent">
-                    <div class="input-group">
-                        <span class="input-group-addon">Имя:</span>
-                        <input class="form-control" id="respondent-name" data-toggle="tooltip" data-placement="right" title="Должно состоять из русских и латинсих символов и цифр">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">E-mail:</span>
-                        <input type="email" class="form-control" id="respondent-email" data-toggle="tooltip" data-placement="right" title="Введите e-mail">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button id="accept-data" type="button" class="btn btn-primary">ОК</button>
+    <div class="modal fade" id="respondent-modal" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Представьтесь, пожалуйста</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="check-respondent" action="/checkRespondent">
+                        <div class="input-group">
+                            <span class="input-group-addon">Имя:</span>
+                            <input class="form-control" id="respondent-name" data-toggle="tooltip" data-placement="right" title="Должно состоять из русских и латинсих символов и цифр">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">E-mail:</span>
+                            <input type="email" class="form-control" id="respondent-email" data-toggle="tooltip" data-placement="right" title="Введите e-mail">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="accept-data" type="button" class="btn btn-primary">ОК</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<script src="/resources/js/view-scripts/poll.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="/resources/js/bootstrap.min.js"></script>
+<script src="/resources/js/view-scripts/poll.js"></script>
+<%-- Привязка функции обмена даты к кнопке; передача в функцию ID --%>
+<script>$('body').on('click','#complete-btn',function(){exchangeData('${id}')});</script>
 </body>
 </html>
