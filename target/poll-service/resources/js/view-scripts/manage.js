@@ -23,6 +23,18 @@ var deletedQuestions = [];
 var deletedOptions   = [];
 var editState = false;
 
+// возвращает false, если хотя бы у одного вопроса нет варианта ответа, помеченного, как правильный
+var checkMarkedOptions = function() {
+    var noUnmarked = true; // нет непомеченных ответов
+    $('.question-panel').each(function(){
+        if($(this).find('input:radio:checked').length == 0) {
+            noUnmarked = false;
+            alert('Вопрос '+$(this).find('.floating-title').html()+' не имеет отметов, помеченных, как правильные!')
+        }
+    });
+    return noUnmarked;
+}
+
 // оборачивает вопрос в html-код
 var wrapQuestion = function(Question) {
     var options = Question.options;
@@ -144,6 +156,8 @@ $('body').on('click','#edit-poll', function(){
 
 // сохранение опроса: отправка данных на сервер
 $('body').on('click','#save-poll', function(){
+    if(!checkMarkedOptions())
+        return;
     for (var i = 0; i < deletedQuestions; i++) {
         $.get('/manage/deletequestion/'+deletedQuestions[i])
     }
