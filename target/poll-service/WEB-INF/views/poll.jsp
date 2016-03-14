@@ -65,7 +65,7 @@
                     <c:forEach var="option" items="${question.options}">
                         <div class="input-group">
                             <span class="input-group-addon"><input data-id="${option.id}" class="answer" type="radio" name="${question.name}"></span>
-                            <div class="form-control">${option.content}</div>
+                            <div class="form-control opt-content">${option.content}</div>
                         </div>
                     </c:forEach>
                 </div>

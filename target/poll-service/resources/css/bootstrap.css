@@ -6413,4 +6413,8 @@ button.close {
 #pol-info {
 
 }
+.opt-content:hover {
+    background-color: #9acfea;
+    /*color: #ffffff;*/
+}
 /*# sourceMappingURL=bootstrap.css.map */

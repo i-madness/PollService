@@ -88,3 +88,7 @@ var exchangeData = function(poll_id){
         });
     //}
 };
+
+$('body').on('click','.opt-content',function(){
+    $(this).parent().find('.answer').prop('checked',true)
+});
