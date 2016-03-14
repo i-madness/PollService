@@ -158,11 +158,11 @@ $('body').on('click','#edit-poll', function(){
 $('body').on('click','#save-poll', function(){
     if(!checkMarkedOptions())
         return;
-    for (var i = 0; i < deletedQuestions; i++) {
+    for (var i = 0; i < deletedQuestions.length; i++) {
         $.get('/manage/deletequestion/'+deletedQuestions[i])
     }
-    for (var i = 0; i < deletedOptions; i++) {
-        $.get('/manage/deleteoption/'+deletedOptions[i])
+    for (var j = 0; j < deletedOptions.length; j++) {
+        $.get('/manage/deleteoption/'+deletedOptions[j])
     }
     $.ajax({
         type: 'POST',

@@ -5,7 +5,7 @@
 <i>Back-end:</i>
 - Java
 - Apache Tomcat 7.0.61
-- Spring MVC Spring 4.0.2
+- Spring MVC (Spring 4.0.2)
 - MyBatis
 - PostgreSQL
 
