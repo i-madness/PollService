@@ -1,0 +1,110 @@
+// SPRING APPLICATION CONTEXT:
+<!-- SET default mail properties -->
+  <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+      <property name="host" value="smtp.gmail.com"/>
+      <property name="port" value="25"/>
+      <property name="username" value="spoll.service@gmail.com"/>
+      <property name="password" value="w4nnaP011"/>
+      <property name="javaMailProperties">
+          <props>
+              <prop key="mail.transport.protocol">smtp</prop>
+              <prop key="mail.smtp.auth">true</prop>
+              <prop key="mail.smtp.starttls.enable">true</prop>
+              <prop key="mail.debug">true</prop>
+          </props>
+      </property>
+  </bean>
+	
+	
+	
+	
+// MAVEN DEPENDENCIES:
+<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-context</artifactId>
+	<version>4.0.1.RELEASE</version>
+</dependency>
+<dependency>
+	<groupId>javax.mail</groupId>
+	<artifactId>mail</artifactId>
+	<version>1.4</version>
+</dependency>
+
+
+
+
+// MailVerificationService.java
+
+import javax.annotation.PostConstruct;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MailVerificationService {
+  
+  @Autowired
+  private MailSender mailSender;   
+
+  /**
+   * This method will send compose and send the message 
+   * */
+  public void sendMail(String to, String subject, String body) 
+  {
+      SimpleMailMessage message = new SimpleMailMessage();
+      message.setTo(to);
+      message.setSubject(subject);
+      message.setText(body);
+      mailSender.send(message);
+  }
+}  
+
+
+
+// [ЮНИТ-ТЕСТ] MalVerivificationTest.java
+import static org.junit.Assert.*;
+
+import javax.mail.MessagingException;
+
+import org.junit.*;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import net.imadness.services.management.MailVerificationService;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"/applicationContext.xml"})
+public class MalVerivificationTest {
+  private String receiverEmail;
+  private String title;
+  private String message;
+  
+  @Autowired
+  private MailVerificationService mailService;
+  
+  @Before
+  public void init() {
+    receiverEmail = "valeri-romanov@ya.ru";
+    title = "ТЕСТОВОЕ ПИСЬМО";
+    message = "Это письмо является проверкой сервиса отправки сообщений приложения Poll Service";
+  }
+  
+  @Test
+  public void checkAutowiring() {
+    assertNotNull(mailService);
+  }
+  
+  @Test
+  public void testSending() {
+      mailService.sendMail(receiverEmail, title, message);
+  }
+  
+}
