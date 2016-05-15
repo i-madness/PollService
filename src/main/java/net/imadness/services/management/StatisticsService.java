@@ -3,6 +3,7 @@ package net.imadness.services.management;
 import net.imadness.entities.Option;
 import net.imadness.entities.Poll;
 import net.imadness.entities.Question;
+import net.imadness.entities.Respondent;
 import net.imadness.services.dal.RespondentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -24,7 +25,7 @@ public class StatisticsService {
     public RespondentService respondentService;
 
     /**
-     * Формирует по опросу в формате "вопрос: количество правильно ответивших людей"
+     * Формирует статистику по опросу в формате "вопрос: количество правильно ответивших людей"
      * @param poll опрос, для которого необходимо сформировать статистику
      * @return данные в формате, необходимом для записи в файл с помощью CSVWriter
      */
@@ -43,8 +44,20 @@ public class StatisticsService {
     }
 
     /**
-     * Сохраняет статистику в *.csv-файл
-     * @return имя файла
+     * Для выбранного опроса возвращает ограниченный список участников с учётом пагинации
+     * @param question опрос, для которого необходимо сформировать статистику
+     * @param offset "отступ" от верхней записи в результате запроса
+     * @return JSON со списком участников
+     */
+    public List<Respondent> getRespondentsOf(Question question, int offset) {
+        ArrayList<Respondent> respondents = new ArrayList<>();
+        respondentService.getPageableRespondentsForPoll(question.getPoll(), offset);
+        return respondents;
+    }
+
+    /**
+     * Предоставляет клиенту ответ сервера в виде .csv-файла со статистикой
+     * @return ответ сервера с указанными заголовками для скачивания файла клиентом
      */
     public ResponseEntity<byte[]> packStatistics(Poll poll) {
         StringBuilder stringBuilder = new StringBuilder();

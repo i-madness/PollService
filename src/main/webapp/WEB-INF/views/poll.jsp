@@ -42,13 +42,11 @@
     </div>
 </div>
 
-<div class="page-header col-md-8 col-lg-offset-2" style="display: none">
+<div class="page-header col-md-8 col-lg-offset-2" <c:if test="${answers == null}">style="display: none"</c:if>>
     <h3><small></small><br>
         Ваш результат прохождения опроса "${poll.name}":</h3>
     <div class="progress progress-striped">
-        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 100%; min-width: 20%">
-
-        </div>
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 100%; min-width: 20%"></div>
     </div>
 </div>
 
@@ -105,7 +103,7 @@
 
 <script src="/resources/js/bootstrap.min.js"></script>
 <script src="/resources/js/view-scripts/poll.js"></script>
-<%-- Привязка функции обмена даты к кнопке; передача в функцию ID --%>
-<script>$('body').on('click','#complete-btn',function(){exchangeData('${id}')});</script>
+<%-- Привязка функции обмена данных к кнопке; передача в функцию ID --%>
+<script>$('body').on('click','#complete-btn',function(){ exchangeData('${id}') });</script>
 </body>
 </html>

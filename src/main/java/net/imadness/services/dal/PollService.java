@@ -141,11 +141,30 @@ public class PollService {
         pollMapper.deletePoll(id);
     }
 
+    /**
+     * Возвращает список пройденных конкретным участником опросов
+     * @param respondent участник, для которого требуется найти опросы
+     */
     public List<Poll> getPollsByRespondent(Respondent respondent) {
         return pollRespondentMapper.getPollsForRespondent(respondent.getId());
     }
 
-    public void insertPollRespondent(Long pollId, Long respondentId) {
-        pollRespondentMapper.insertPollRespondent(pollId,respondentId);
+    /**
+     * Возвращает список пройденных конкретным участником опросов
+     * @param respondentId ID участника, для которого требуется найти опросы
+     */
+    public List<Poll> getPollsByRespondent(Long respondentId) {
+        return pollRespondentMapper.getPollsForRespondent(respondentId);
     }
+
+    /**
+     * Добавляет запись в промежуточную таблицу poll-respondent (m-to-n)
+     * @param pollId id опроса
+     * @param respondentId id участника
+     */
+    public void insertPollRespondent(Long pollId, Long respondentId) {
+        pollRespondentMapper.insertPollRespondent(pollId, respondentId);
+    }
+
+
 }

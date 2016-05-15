@@ -68,7 +68,7 @@
             </div>
         </div>
         <div id="poll-info" class="panel-body"></div>
-        <table id="poll-stats" class="table table-striped">
+        <table id="poll-stats" class="table table-striped table-hover">
         </table>
     </div>
 

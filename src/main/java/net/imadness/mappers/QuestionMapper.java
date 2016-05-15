@@ -12,25 +12,9 @@ import java.util.List;
 public interface QuestionMapper {
 
     @Select("SELECT * FROM question")
-    @Results(value = {
-            @Result(property = "id",      column = "question_id"),
-            @Result(property = "name",    column = "name"),
-            @Result(property = "poll",    column = "poll",    javaType = Poll.class,
-                    one  = @One(select = "net.imadness.mappers.PollMapper.getPollById")),
-            @Result(property = "options", column = "options", javaType = List.class,
-                    many = @Many(select = "net.imadness.mappers.OptionMapper.getOptionsForQuestion"))
-    })
     public List<Question> getAllQuestions();
 
     @Select("SELECT * FROM question WHERE id=#{id}")
-    @Results(value = {
-            @Result(property = "id",      column = "id"),
-            @Result(property = "name",    column = "name"),
-            @Result(property = "poll",    column = "poll",    javaType = Poll.class,
-                    one  = @One(select = "net.imadness.mappers.PollMapper.getPollById")),
-            @Result(property = "options", column = "options", javaType = List.class,
-                    many = @Many(select = "net.imadness.mappers.OptionMapper.getOptionsForQuestion"))
-    })
     public Question getQuestionById(@Param("id") Long id);
 
     @Update("UPDATE question SET name=#{question.name} WHERE id=#{question.id}")

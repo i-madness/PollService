@@ -8,6 +8,9 @@ import net.imadness.entities.extended.ResultHolder;
 import net.imadness.services.dal.OptionService;
 import net.imadness.services.dal.PollService;
 import net.imadness.services.dal.RespondentService;
+import net.imadness.services.management.ParticipationService;
+import net.imadness.services.management.PollViewRequestFilter;
+import net.imadness.util.exceptions.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,21 +32,60 @@ import java.util.List;
 public class PollController {
 
     @Autowired
-    PollService pollService;
+    private PollService pollService;
     @Autowired
-    RespondentService respondentService;
+    private RespondentService respondentService;
     @Autowired
-    OptionService optionService;
+    private OptionService optionService;
+    @Autowired
+    private PollViewRequestFilter validator;
+    @Autowired
+    private ParticipationService participationService;
+
+    /**
+     * Страница-реферрер, содержащая скрипт перенаправления на страницу опроса
+     */
+    @RequestMapping("/poll/r/{id}")
+    public String pollPageReferrer(@PathVariable Long id, ModelMap modelMap) {
+        modelMap.addAttribute("pollid", id);
+        return "ref";
+    }
 
     /**
      * Страница для прохождения опроса с конкретным ID
+     * Если посетитель страницы уже проходил данный опрос, ему будут показаны его старые результаты
      * @param id ID опроса
      */
     @RequestMapping("/poll/{id}")
-    public String preparePollView(@PathVariable Long id, ModelMap modelMap) {
+    public String preparePollView(@PathVariable Long id, ModelMap modelMap, HttpServletRequest request) {
+        if (!validator.checkRequest(request))
+            throw new BadRequestException();
+        Cookie[] cookies = request.getCookies();
+        String userId = null, participatedCookie = null;
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("user"))
+                userId = cookie.getValue();
+            if (cookie.getName().equals("p" + id.toString())) {
+                participatedCookie = cookie.getValue();
+            }
+        }
+        if (userId != null && participatedCookie != null) {
+            Long respId = Long.parseLong(userId);
+            // показать пользователю его ответы
+            for (Respondent respondent : respondentService.getAllRespondentsForPoll(id)) {
+                if (respondent.getId().equals(respId)) {
+                    modelMap.addAttribute("questions", respondentService.getQuestionsForRespondent(respondent));
+                    int rightCount = 0;
+                    for (Option option : respondent.getAnswers())
+                        if (option.getRight())
+                            rightCount++;
+                    modelMap.addAttribute("rightCnt", rightCount);
+                }
+            }
+        }
         Poll poll = pollService.getPollById(id);
-        modelMap.addAttribute("poll",poll);
-        modelMap.addAttribute("id",id);
+        modelMap.addAttribute("poll", poll);
+        modelMap.addAttribute("id", id);
         return "poll";
     }
 
@@ -50,12 +95,14 @@ public class PollController {
      * @param resultHolder объект, содержащий в себе данные об опросе и ответы
      */
     @RequestMapping(value = "/poll/{id}/save", method = RequestMethod.POST, headers = "Accept=application/json")
-    public ResponseEntity<String> saveResults(@PathVariable Long id, @RequestBody ResultHolder resultHolder) {
+    public ResponseEntity<String> saveResults(@PathVariable Long id, @RequestBody ResultHolder resultHolder, HttpServletResponse response) {
         try {
             savePollResults(id,resultHolder);
-            return new ResponseEntity<String>(HttpStatus.OK);
+            response.addCookie(new Cookie("p"+id,"true"));
+            response.addCookie(new Cookie("user", resultHolder.getRespondent().getId().toString()));
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -63,14 +110,15 @@ public class PollController {
      * Принимает и сохраняет результаты опроса, пройденного на стороннем ресурсе
      * @return ответ сервера с указанием статуса
      */
+    @Deprecated
     @ResponseBody
     @RequestMapping(value = "/poll/{id}/receiveResultsFromEmbed", method = RequestMethod.POST)
-    public ResponseEntity<String> receiveResults(@PathVariable Long id, @RequestBody ResultHolder resultHolder) {
+    public ResponseEntity<String> receiveResults(@PathVariable Long id, @RequestBody ResultHolder resultHolder, HttpServletResponse response) {
         try {
             savePollResults(id,resultHolder);
-            return new ResponseEntity<String>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -81,7 +129,7 @@ public class PollController {
     @ResponseBody
     @RequestMapping(value = "/poll/{id}/getAnswers", method = RequestMethod.GET)
     public List getAnswersForPoll(@PathVariable Long id) {
-        ArrayList<Long> answers = new ArrayList<Long>();
+        ArrayList<Long> answers = new ArrayList<>();
         Poll poll = pollService.getPollById(id);
         for (Question question : poll.getQuestions())
             for (Option option : question.getOptions())
@@ -90,13 +138,13 @@ public class PollController {
         return answers;
     }
 
-    @RequestMapping("/verify/{id}/{code}")
-    public String verifyRespondent(@PathVariable Long id, @PathVariable Long code) {
-        respondentService.getRespondentById(id);
-        return "redirect:/";
-    }
-
-    public void savePollResults(Long id, ResultHolder resultHolder) throws Exception {
+    /**
+     * Общий метод сохранения результатов опроса для определённого пользователя
+     * @param id id опроса
+     * @param resultHolder объект, содержащий в себе данные об опросе и ответы
+     * @throws Exception исключение, перехватываемое вышестоящими методами контроллера
+     */
+    private void savePollResults(Long id, ResultHolder resultHolder) throws Exception {
         Poll completedPoll = pollService.getPollById(id);
         Respondent respondent = resultHolder.getRespondent();
         List<Long> answers = resultHolder.getOptions();

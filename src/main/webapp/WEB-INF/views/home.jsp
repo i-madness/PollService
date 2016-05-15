@@ -44,7 +44,7 @@
 <div class="container col-md-8 col-lg-offset-2" style="margin-top: 20px;">
     <c:forEach var="poll" items="${pollList}">
         <div class="panel panel-default">
-            <div class="panel-heading"><h4><a href="/poll/${poll.id}"><c:out value="${poll.name}"/></a></h4></div>
+            <div class="panel-heading"><h4><a href="/poll/r/${poll.id}"><c:out value="${poll.name}"/></a></h4></div>
             <div class="panel-body"><c:out value="${poll.description}"/></div>
         </div>
     </c:forEach>
