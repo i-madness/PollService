@@ -21,12 +21,6 @@ public interface PollRespondentMapper {
             "SELECT respondentid FROM poll_respondent WHERE pollid=#{pollId})")
     public List<Respondent> getRespondentsForPoll(@Param("pollId") Long pollId);
 
-
-    @Select("SELECT * FROM respondent r WHERE r.id = ANY(" +
-            "SELECT respondentid FROM poll_respondent WHERE pollid=#{pollId})" +
-            "LIMIT #{limit} OFFSET #{offset}")
-    public List<Respondent> getPageableRespondentsForPoll(@Param("pollId") Long pollId, @Param("limit") int limit, @Param("offset") int offset);
-
     @Insert("INSERT INTO poll_respondent(pollid,respondentid) VALUES(#{pollId},#{respondentId})")
     public void insertPollRespondent(@Param("pollId") Long pollId, @Param("respondentId") Long respondentId);
 

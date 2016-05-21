@@ -35,11 +35,11 @@ public class Respondent {
         this.name = name;
     }
 
-    public String getEmail() {
+    public String getIpAddress() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setIpAddress(String email) {
         this.email = email;
     }
 

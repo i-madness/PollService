@@ -1,4 +1,3 @@
-(function ($) {
 
     var statData;
 
@@ -7,7 +6,7 @@
         var id = $(this).data('id');
         $.get('/manage/stats/' + $(this).data('id'), function (data) {
             $('#poll-stats').empty();
-            $('#poll-panel').show();
+            $('#poll-panel').fadeIn(200);
             $('#poll-stats').append('<thead><td><b>Вопрос</b></td><td><b>Правильно ответили</b></td></thead><tbody></tbody>')
             $('#download-stats').show();
             statData = data;
@@ -18,8 +17,18 @@
         });
     });
 
-    $('tr').on('click', function () {
-        
-    })
+    $('body').on('click', 'tr', function () {
+        $.get('/manage/stats/questionresp/', function (data) {
+            $('#qrespondents').empty();
+            for (var i = 0; i < data.length; i++) {
+                var icolbl = data[i].id < 70 ? '<span class="label label-success"><span class="glyphicon glyphicon-ok"></span></span>'
+                                             : '<span class="label label-danger"><span class="glyphicon glyphicon-remove"></span></span>'
+                $('#qrespondents').append('<tr><td>' + data[i].id + '</td>' +
+                '<td>' + data[i].name + '</td>' +
+                '<td>' + data[i].ipAddress + '</td>' +
+                '<td align="center">' + icolbl + '</td></tr>');
+            }
+            $('#respondent-modal').modal('show');
+        });
+    });
 
-})

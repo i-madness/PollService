@@ -1,9 +1,7 @@
 package net.imadness.mappers;
 
-import net.imadness.entities.Poll;
 import net.imadness.entities.Respondent;
 import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.type.JdbcType;
 
 import java.util.List;
 
@@ -21,7 +19,7 @@ public interface RespondentMapper {
     @Select("SELECT * FROM respondent WHERE name=#{name} AND email=#{email}")
     public Respondent getRespondentByPersonalData(@Param("name") String name, @Param("email") String email);
 
-    @Update("UPDATE respondent SET name=#{respondent.name}, email=#{respondent.email} WHERE id=#{respondent.id}")
+    @Update("UPDATE respondent SET name=#{respondent.name}, ipaddr=#{respondent.ipAddress} WHERE id=#{respondent.id}")
     public void updateRespondent(@Param("respondent") Respondent respondent);
 
     @Insert("INSERT INTO respondent (name,email) VALUES(#{respondent.name},#{respondent.email})")

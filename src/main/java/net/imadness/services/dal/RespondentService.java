@@ -32,7 +32,7 @@ public class RespondentService {
      * @param respondent добавляемый участник
      */
     public void addRespondent(Respondent respondent) {
-        if(getRespondentByPersonalData(respondent.getName(),respondent.getEmail()) == null)
+        if(getRespondentByPersonalData(respondent.getName(),respondent.getIpAddress()) == null)
             respondentMapper.addRespondent(respondent);
     }
 
@@ -95,14 +95,14 @@ public class RespondentService {
     }
 
     /**
-     * Возвращает список из ограниченного числа участников для данного опроса
+     * Возвращает список из ограниченного числа участников для данного вопроса
      * Требуется для постраничного отображения участников
      * @see net.imadness.services.management.StatisticsService [ getRespondentsOf(Poll) ]
-     * @param poll данный опрос
+     * @param questionId id данного вопроса
      * @param offset "отступ" от верхней записи в результате запроса
      */
-    public List<Respondent> getPageableRespondentsForPoll(Poll poll, int offset) {
-        return pollRespondentMapper.getPageableRespondentsForPoll(poll.getId(), LIMIT, offset);
+    public List<Respondent> getPageableRespondentsForQuestion(Long optionId, Long questionId, int offset) {
+        return respondentOptionMapper.getPageableRespondentsForOption(optionId, questionId, LIMIT, offset);
     }
 
     /**
@@ -125,6 +125,11 @@ public class RespondentService {
         return respondentOptionMapper.getRespondentsForOption(option.getId());
     }
 
+    /**
+     * Находит и возвращает все вопросы, в которых участвовал данный пользователь
+     * @param respondent участник искомых вопросов
+     * @return список из вопросов
+     */
     public List<Question> getQuestionsForRespondent(Respondent respondent) {
         ArrayList<Question> questions = new ArrayList<>();
         for (Option option : respondentOptionMapper.getOptionsForRespondent(respondent.getId()))

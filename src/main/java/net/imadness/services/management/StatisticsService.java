@@ -38,7 +38,7 @@ public class StatisticsService {
                 if(option.getRight()) // считаем количество правильно ответивших пользователей
                     respondentCount += respondentService.getAllRespondentsForOption(option).size();
             }
-            result.add(new String[]{question.getName(),respondentCount.toString()});
+            result.add(new String[]{question.getName(), respondentCount.toString()});
         }
         return result;
     }
@@ -51,7 +51,8 @@ public class StatisticsService {
      */
     public List<Respondent> getRespondentsOf(Question question, int offset) {
         ArrayList<Respondent> respondents = new ArrayList<>();
-        respondentService.getPageableRespondentsForPoll(question.getPoll(), offset);
+        for (Option option : question.getOptions())
+            respondents.addAll(respondentService.getPageableRespondentsForQuestion(option.getId(), question.getId(), offset));
         return respondents;
     }
 

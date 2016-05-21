@@ -68,8 +68,43 @@
             </div>
         </div>
         <div id="poll-info" class="panel-body"></div>
-        <table id="poll-stats" class="table table-striped">
+        <table id="poll-stats" class="table table-striped table-hover">
         </table>
+    </div>
+
+
+    <%-- Modal --%>
+    <div class="modal fade" id="respondent-modal" tabindex="-1" role="dialog" aria-labelledby="modal-name">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modal-name">Статистика вопроса "What city is the capital of Great Britain?"</h4>
+                </div>
+                <div class="modal-body panel-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <td><b>id</b></td>
+                            <td><b>Имя</b></td>
+                            <td><b>IP-адрес</b></td>
+                            <td align="center"><b>Ответил правильно</b></td>
+                        </thead>
+                        <tbody id="qrespondents">
+                        </tbody>
+                    </table>
+                </div>
+                <div align="center"><ul class="pagination">
+                    <li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                </ul></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 

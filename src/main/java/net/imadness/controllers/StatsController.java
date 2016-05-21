@@ -2,20 +2,14 @@ package net.imadness.controllers;
 
 import net.imadness.entities.Poll;
 import net.imadness.services.dal.PollService;
+import net.imadness.services.dal.QuestionService;
 import net.imadness.services.dal.RespondentService;
 import net.imadness.services.management.StatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +24,8 @@ public class StatsController {
     StatisticsService statisticsService;
     @Autowired
     PollService pollService;
+    @Autowired
+    QuestionService questionService;
     @Autowired
     RespondentService respondentService;
 
@@ -48,17 +44,27 @@ public class StatsController {
      */
     @RequestMapping("/manage/stats/{poll_id}")
     @ResponseBody
-    public List getStatsForPoll(@PathVariable("poll_id") Long id) {
+    public List showStatsForPoll(@PathVariable("poll_id") Long id) {
         Poll poll = pollService.getPollById(id);
         List<String[]> statistics = statisticsService.getPollStatistics(poll);
         return statistics;
     }
 
     /**
+     * Возвращает клиенту список участников, ответивших на данный вопрос
+     */
+    @RequestMapping("/manage/stats/questionresp/") //{question_id}
+    @ResponseBody
+    public List showRespondentsForQuestion(/*@PathVariable("question_id") Long id, @RequestParam int offset*/) {
+        return respondentService.getAllRespondents();
+        //return statisticsService.getRespondentsOf(questionService.getQuestionById(id), 5);
+    }
+
+    /**
      * Возвращает клиенту .csv файл со статистикой
      */
     @RequestMapping(value = "/manage/stats/{poll_id}/download", method = RequestMethod.GET)
-    public ResponseEntity<byte[]> getDownloadData(@PathVariable("poll_id") Long id) {
+    public ResponseEntity<byte[]> showDownloadData(@PathVariable("poll_id") Long id) {
         Poll poll = pollService.getPollById(id);
         return statisticsService.packStatistics(poll);
     }
