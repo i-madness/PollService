@@ -36,6 +36,7 @@
                 <li class="active"><a href="#">Опросы</a></li>
                 <li><a href="/manage">Управление</a></li>
                 <li><a href="/manage/stats">Статистика</a></li>
+                <li><a href="/manage/settings">Настройки</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

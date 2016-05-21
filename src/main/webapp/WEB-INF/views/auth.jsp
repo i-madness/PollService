@@ -36,6 +36,7 @@
                 <li class="active"><a href="#">Опросы</a></li>
                 <li><a href="/manage">Управление</a></li>
                 <li><a href="/manage/stats">Статистика</a></li>
+                <li><a href="/manage/settings">Настройки</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -58,7 +59,7 @@
                     <p>Авторизация прошла успешно</p>
                 </div>
                 </c:if>
-                <div class="input-group input-sm">
+                    <div class="input-group input-sm">
                     <label class="input-group-addon" for="username"><span class="glyphicon glyphicon-user"></span></label>
                     <input type="text" class="form-control" id="username" name="ssoId" placeholder="Введите логин" required>
                 </div>

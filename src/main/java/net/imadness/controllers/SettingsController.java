@@ -6,9 +6,7 @@ import net.imadness.util.exceptions.SettingsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class SettingsController {
@@ -30,7 +28,7 @@ public class SettingsController {
         return "prefs";
     }
 
-    @RequestMapping("/manage/settings/newSettings")
+    @RequestMapping(value = "/manage/settings/newSettings", method = RequestMethod.POST, headers = "Accept=application/json; charset=utf-8")
     public String applySettings(@RequestBody Settings newSettings) {
         try {
             settingsService.setSettings(newSettings);

@@ -43,9 +43,13 @@
 
 <div class="container col-md-8 col-lg-offset-2" style="margin-top: 20px;">
     <div class="panel panel-default">
-        <div class="panel-heading"><h3>Настройки доступа</h3></div>
+        <div class="panel-heading" style="overflow: auto">
+            <h4 style="float: left; ">Настройки доступа</h4>
+            <button id="apply-settings-btn" class="btn btn-warning floating-button">Применить</button>
+        </div>
         <div class="panel-body">
-            <div class="alert alert-warning">Расположение файла настроек<br><b>${settingsPath}</b></div>
+            <div class="alert" id="alert-msg" style="display: none"></div>
+            <div class="alert alert-warning">Расположение файла настроек:<br><b>${settingsPath}</b></div>
             <div class="input-group input-sm">
                 <label class="input-group-addon" for="username">Логин</label>
                 <input type="text" class="form-control" id="username" name="ssoId" placeholder="Введите логин" value="${settings.login}">
@@ -56,16 +60,20 @@
                 <a id="change-passwd" class="input-group-addon">Изменить..</a>
             </div>
             <div class="col-md-8 col-md-offset-2" id="chg-passwd" style="border-bottom-color: #2a6496; display: none">
+                <div id="wrong-pass-alert" style="display: none; margin-top: 4px;" class="alert alert-danger">Неправильно введён пароль!</div>
                 <h4>Изменение пароля:</h4>
                 <div class="input-group input-sm">
-                    <label class="input-group-addon" for="password">Новый пароль</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                    <label class="input-group-addon" for="password">Старый пароль</label>
+                    <input type="password" class="form-control" id="old-password" name="password">
                 </div>
                 <div class="input-group input-sm">
-                    <label class="input-group-addon" for="password">Повтор пароля</label>
-                    <input type="password" class="form-control" id="password" name="password">
+                    <label class="input-group-addon" for="password">Новый пароль</label>
+                    <input type="password" class="form-control" id="new-password" name="password">
                 </div>
-                <button id="chg-passwd-confirm" class="btn btn-primary col-md-4 col-md-offset-4">Изменить пароль</button>
+                <div class="col-md-offset-3">
+                    <button id="chg-passwd-confirm" class="btn btn-primary">Изменить пароль</button>
+                    <button id="chg-passwd-cancel" class="btn btn-default">Отмена</button>
+                </div>
             </div>
         </div>
     </div>
@@ -73,6 +81,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="/resources/js/view-scripts/prefs.js"></script>
+<script>var password = "${settings.password}"; </script>
 <script src="/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
