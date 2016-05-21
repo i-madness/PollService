@@ -46,11 +46,32 @@
     <div class="panel panel-default">
         <div class="panel-heading"><h4>Вход в систему:</h4></div>
         <div class="panel-body">
-            <form action="/manage" method="post">
-                <div>Учётная запись: <input name="username" type="text" class="form-control"></div>
-                <div>Пароль: </div>
-                <div>Запомнить меня</div>
-            </form>
+            <c:url var="loginUrl" value="/auth" />
+            <form action="${loginUrl}" method="post" class="form-horizontal">
+                <c:if test="${param.error != null}">
+                <div class="alert alert-danger">
+                    <p>Неправильный логин или пароль</p>
+                </div>
+                </c:if>
+                <c:if test="${param.logout != null}">
+                <div class="alert alert-success">
+                    <p>Авторизация прошла успешно</p>
+                </div>
+                </c:if>
+                <div class="input-group input-sm">
+                    <label class="input-group-addon" for="username"><span class="glyphicon glyphicon-user"></span></label>
+                    <input type="text" class="form-control" id="username" name="ssoId" placeholder="Введите логин" required>
+                </div>
+                <div class="input-group input-sm">
+                    <label class="input-group-addon" for="password"><span class="glyphicon glyphicon-lock"></span></label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Введите пароль" required>
+                </div>
+                <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}" />
+
+                <div class="col-md-2 col-md-offset-5">
+                    <input type="submit"
+                           class="btn btn-block btn-primary btn-default" value="Вход">
+                </div>
         </div>
     </div>
 </div>

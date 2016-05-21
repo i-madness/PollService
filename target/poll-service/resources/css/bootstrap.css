@@ -6416,3 +6416,6 @@ button.close {
 .opt-content:hover {
     background-color: #9acfea;
 }
+textarea {
+    resize: none;
+}

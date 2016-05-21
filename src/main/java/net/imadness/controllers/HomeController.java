@@ -5,6 +5,9 @@ import net.imadness.services.dal.PollService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,11 +31,28 @@ public class HomeController {
      * Помещает опросы и их описание на главную страницу в виде списка
      */
 	@RequestMapping("/")
-	public String prepareHomepageView(ModelMap model) {
+	public String prepareHomePageView(ModelMap model) {
         List<Poll> polls = pollService.getAllPollsWithoutFetch();
         model.addAttribute("pollList",polls);
         return "home";
 	}
+
+    /**
+     * Задаёт маппинг для страницы логина для администратора сервиса
+     */
+    @RequestMapping("/auth")
+	public String prepareLoginPageView(ModelMap model) {
+        return "auth";
+	}
+
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "redirect:/login?logout";
+    }
 
     @ResponseBody
     @RequestMapping("/ud")
