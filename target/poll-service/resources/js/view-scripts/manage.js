@@ -142,8 +142,8 @@ $('body').on('click','#edit-poll', function(){
     $('#poll-name').prop('disabled',false);
     $('#poll-descriprion').prop('disabled',false);
     $('#question-body').empty();
-    $('#save-poll').show();
-    $('#add-quest').show();
+    $('#save-poll').fadeIn(200);
+    $('#add-quest').fadeIn(200);
     $('#poll-name').addClass('editing-data');
     $('#poll-description').addClass('editing-data');
     if (questions !== undefined && questions != null)
@@ -192,8 +192,8 @@ $('body').on('click','#delete-poll', function(){
         if (currentPoll!=null) {
             $.get("/manage/deletepoll/"+currentPoll.id, location.reload() )
         }
-        $('#poll-panel').hide();
-        $('#question-body').hide();
+        $('#poll-panel').fadeOut(200);
+        $('#question-body').fadeOut(200);
         $('#poll-name').removeClass('editing-data');
         $('#poll-description').removeClass('editing-data');
         editState = false;

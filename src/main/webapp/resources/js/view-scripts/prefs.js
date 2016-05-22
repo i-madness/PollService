@@ -37,15 +37,15 @@ $('body').on('click', '#chg-passwd-cancel', function () {
 });
 
 $('body').on('click','#apply-settings-btn', function () {
-   var newSettings = JSON.stringify({
+   var settings = JSON.stringify({
       login : $('#username').val(),
       password : password
    });
     $.ajax({
         type: 'POST',
-        url: '/manage/settings/newSettings',
-        contentType: 'application/json; charset=utf-8',
-        data : JSON.stringify(newSettings),
+        url: '/manage/settings/setNew',
+        contentType: 'application/json',
+        data : JSON.stringify(settings),
         success : function () {
             $('#alert-msg').removeClass('alert-danger').addClass('alert-success').html('Настройки были успешно сохранены!').fadeIn(200);
             setTimeout(function () {

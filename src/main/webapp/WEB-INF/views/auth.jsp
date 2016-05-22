@@ -77,6 +77,11 @@
     </div>
 </div>
 
+<footer class="footer">
+    <div class="container">
+        <p align="center" class="text-muted">© sPoll 2016. Developed by <a href="https://github.com/i-madness">Valery Romanov</a>. Powered by <a href="http://spring.io/">Spring Framework</a></p>
+    </div>
+</footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="/resources/js/bootstrap.min.js"></script>

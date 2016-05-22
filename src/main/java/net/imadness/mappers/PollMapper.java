@@ -13,6 +13,12 @@ public interface PollMapper {
     @Select("SELECT * FROM poll")
     public List<Poll> getAllPolls();
 
+    @Select("SELECT * FROM poll WHERE istest=false")
+    public List<Poll> getPollsOnly();
+
+    @Select("SELECT * FROM poll WHERE istest=true")
+    public List<Poll> getTestsOnly();
+
     @Select("SELECT * FROM poll WHERE id=#{id}")
     public Poll getPollById(@Param("id") Long id);
 

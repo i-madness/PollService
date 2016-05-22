@@ -1,6 +1,6 @@
 /*
 Created: 05.03.2016
-Modified: 21.05.2016
+Modified: 22.05.2016
 Model: PostgreSQL 9.2
 Database: PostgreSQL 9.2
 */
@@ -13,7 +13,9 @@ Database: PostgreSQL 9.2
 CREATE TABLE "poll"(
  "id" BigSerial NOT NULL,
  "name" Varchar NOT NULL,
- "description" Varchar
+ "description" Varchar,
+ "istest" Boolean DEFAULT true NOT NULL,
+ "ismultyoptional" Boolean DEFAULT false NOT NULL
 )
 ;
 
@@ -113,7 +115,7 @@ CREATE TABLE "respondent_option"(
 ALTER TABLE "respondent_option" ADD CONSTRAINT "pk_respondent_option" PRIMARY KEY ("respondentid","optionid")
 ;
 
--- Create relationships section ------------------------------------------------- 
+-- Create relationships section -------------------------------------------------
 
 ALTER TABLE "poll_respondent" ADD CONSTRAINT "fk_poll_respondent" FOREIGN KEY ("pollid") REFERENCES "poll" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 ;

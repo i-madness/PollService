@@ -46,7 +46,7 @@
     <h3>Управление опросами</h3>
 </div>
 
-<div class="container col-md-8 col-md-offset-2" style="margin-top: 20px;">
+<div class="container col-md-8 col-md-offset-2" style="margin-top: 20px; margin-bottom: 30px">
     <div><%--Container for buttons--%>
         <div class="btn-group">
             <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
@@ -83,6 +83,13 @@
 
     <div class="col-md-offset-1 col-md-10" id="question-body"><%--Container for questions--%></div>
 </div>
+
+<footer class="footer">
+    <div class="">
+        <p class="text-muted" align="center">© sPoll 2016. Developed by <a href="https://github.com/i-madness">Valery Romanov</a>. Powered by <a href="http://spring.io/">Spring Framework</a></p>
+    </div>
+</footer>
+
 <script src="/resources/js/view-scripts/manage.js"></script>
 <script src="/resources/js/bootstrap.min.js"></script>
 </body>

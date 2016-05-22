@@ -12,6 +12,8 @@ public class Poll {
     private String description;
     private List<Respondent> respondents;
     private List<Question> questions;
+    private Boolean isTest;
+    private Boolean isMultioptional;
 
     public Poll() {}
 
@@ -58,6 +60,22 @@ public class Poll {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    public Boolean getTest() {
+        return isTest;
+    }
+
+    public void setTest(Boolean test) {
+        isTest = test;
+    }
+
+    public Boolean getMultioptional() {
+        return isMultioptional;
+    }
+
+    public void setMultioptional(Boolean multioptional) {
+        isMultioptional = multioptional;
     }
 
     @Override

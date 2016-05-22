@@ -43,6 +43,18 @@
 </div>
 
 <div class="container col-md-8 col-lg-offset-2" style="margin-top: 20px;">
+    <div class="btn-group" style="margin-bottom: 10px">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-th-list"></span>
+            <span id="current-group-selection"> Все опросы и тесты</span>
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li class="pollgroup-selection"><a href="#">Все опросы и тесты</a></li>
+            <li class="pollgroup-selection"><a href="#">Опросы</a></li>
+            <li class="pollgroup-selection"><a href="#">Тесты</a></li>
+        </ul>
+    </div>
     <c:forEach var="poll" items="${pollList}">
         <div class="panel panel-default">
             <div class="panel-heading"><h4><a href="/poll/r/${poll.id}"><c:out value="${poll.name}"/></a></h4></div>
@@ -51,6 +63,9 @@
     </c:forEach>
 </div>
 
+<div class="footer">
+    <p align="center" class="text-muted">© sPoll 2016. Developed by <a href="https://github.com/i-madness">Valery Romanov</a>. Powered by <a href="http://spring.io/">Spring Framework</a></p>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="/resources/js/bootstrap.min.js"></script>

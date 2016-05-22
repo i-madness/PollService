@@ -79,6 +79,22 @@ public class PollService {
     }
 
     /**
+     * Получает все экземпляры Poll, являющиеся только опросами
+     * @returnколлекция из всех опросов
+     */
+    public List<Poll> getPollsOnly() {
+        return pollMapper.getPollsOnly();
+    }
+
+    /**
+     * Получает все экземпляры Poll, являющиеся только тестами
+     * @return коллекция из всех тестов
+     */
+    public List<Poll> getTestsOnly() {
+        return pollMapper.getTestsOnly();
+    }
+
+    /**
      * Получает экземпляр сущности Poll по идентификатору
      * @param id идентификатор экземпляра сущности Poll
      * @return полученный экземпляр Poll
