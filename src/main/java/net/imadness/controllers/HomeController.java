@@ -1,5 +1,7 @@
 package net.imadness.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import net.imadness.entities.Poll;
 import net.imadness.services.dal.PollService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +31,18 @@ public class HomeController {
      */
 	@RequestMapping("/")
 	public String prepareHomePageView(ModelMap model) {
-        List<Poll> polls = pollService.getAllPollsWithoutFetch();
-        model.addAttribute("pollList",polls);
+        List<Poll> all = pollService.getAllPollsWithoutFetch();
+        List<Poll> polls = pollService.getPollsOnly();
+        List<Poll> tests = pollService.getTestsOnly();
+        model.addAttribute("pollList", all);
+        try {
+            //ObjectMapper objectMapper = new ObjectMapper();
+            model.addAttribute("jsonAllList", new ObjectMapper().writeValueAsString(all));
+            model.addAttribute("jsonPollList", new ObjectMapper().writeValueAsString(polls));
+            model.addAttribute("jsonTestList", new ObjectMapper().writeValueAsString(tests));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         return "home";
 	}
 

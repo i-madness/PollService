@@ -42,7 +42,7 @@
     </div>
 </div>
 
-<div class="container col-md-8 col-lg-offset-2" style="margin-top: 20px;">
+<div id="panel-container" class="container col-md-8 col-lg-offset-2" style="margin-top: 20px; margin-bottom: 50px;">
     <div class="btn-group" style="margin-bottom: 10px">
         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
             <span class="glyphicon glyphicon-th-list"></span>
@@ -50,9 +50,9 @@
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-            <li class="pollgroup-selection"><a href="#">Все опросы и тесты</a></li>
-            <li class="pollgroup-selection"><a href="#">Опросы</a></li>
-            <li class="pollgroup-selection"><a href="#">Тесты</a></li>
+            <li><a class="pollgroup-selection" data-id="1" href="#">Все опросы и тесты</a></li>
+            <li><a class="pollgroup-selection" data-id="2" href="#">Опросы</a></li>
+            <li><a class="pollgroup-selection" data-id="3" href="#">Тесты</a></li>
         </ul>
     </div>
     <c:forEach var="poll" items="${pollList}">
@@ -67,7 +67,13 @@
     <p align="center" class="text-muted">© sPoll 2016. Developed by <a href="https://github.com/i-madness">Valery Romanov</a>. Powered by <a href="http://spring.io/">Spring Framework</a></p>
 </div>
 
+<script>
+    var allEntry = ${jsonAllList};
+    var allPolls = ${jsonPollList};
+    var allTests = ${jsonTestList};
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="/resources/js/bootstrap.min.js"></script>
+<script src="/resources/js/view-scripts/home.js"></script>
 </body>
 </html>

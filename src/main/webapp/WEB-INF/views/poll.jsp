@@ -72,7 +72,8 @@
         </c:forEach>
     </div>
     <div align="center">
-        <button id="complete-btn" class="btn btn-info">Завершить прохождение опроса</button>
+        <c:if test="${poll.test}"><button id="complete-btn" class="btn btn-info">Завершить прохождение опроса</button></c:if>
+        <c:if test="${!poll.test}"><button id="complete-btn" class="btn btn-info">Голосовать</button></c:if>
     </div>
 
 
@@ -111,6 +112,6 @@
 <script src="/resources/js/bootstrap.min.js"></script>
 <script src="/resources/js/view-scripts/poll.js"></script>
 <%-- Привязка функции обмена данных к кнопке; передача в функцию ID --%>
-<script>$('body').on('click','#complete-btn',function(){ exchangeData('${id}') });</script>
+<script>$('body').on('click','#complete-btn',function(){ exchangeData('${id}',${poll.test}) });</script>
 </body>
 </html>

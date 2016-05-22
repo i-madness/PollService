@@ -72,10 +72,7 @@
     });
 
     // завершение прохождения опроса: отправка данных на сервер, получение правильных ответов и отображение результатов
-    var exchangeData = function (poll_id) {
-        //if(respondent == null)
-        //location.reload();
-        //else {
+    var exchangeData = function (pollId, isTest) {
         $('.answer').each(function () {
             if ($(this).prop('checked'))
                 answers.push($(this).data('id'))
@@ -83,10 +80,10 @@
         var holder = {respondent: respondent, options: answers};
         $.ajax({
             type: 'POST',
-            url: "/poll/" + poll_id + "/save",
+            url: "/poll/" + pollId + "/save",
             contentType: 'application/json',
             data: JSON.stringify(holder),
-            success: getAnswers(poll_id)
+            success: isTest ? getAnswers(pollId) : function () {}
         });
         //}
     };
