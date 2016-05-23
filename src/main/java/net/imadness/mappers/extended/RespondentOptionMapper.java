@@ -29,6 +29,9 @@ public interface RespondentOptionMapper {
     public List<Respondent> getPageableRespondentsForOption(@Param("optionId") Long optionId, @Param("questionid") Long questionId,
                                                             @Param("limit") int limit, @Param("offset") int offset);
 
+    @Select("SELECT COUNT(respondentid) FROM respondent_option WHERE optionid = #{id}")
+    public int getVoteCount(@Param("id") Long optionId);
+
     @Insert("INSERT INTO respondent_option(respondentid,optionid) VALUES(#{respondentId},#{optionId})")
     public void insertRespondentOption(@Param("respondentId") Long respondentId, @Param("optionId") Long optionId);
 

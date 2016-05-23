@@ -1,5 +1,7 @@
 package net.imadness.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import net.imadness.entities.Option;
 import net.imadness.entities.Poll;
 import net.imadness.entities.Question;
@@ -7,6 +9,7 @@ import net.imadness.entities.Respondent;
 import net.imadness.entities.extended.ResultHolder;
 import net.imadness.services.dal.OptionService;
 import net.imadness.services.dal.PollService;
+import net.imadness.services.dal.QuestionService;
 import net.imadness.services.dal.RespondentService;
 import net.imadness.services.management.ParticipationService;
 import net.imadness.services.management.PollViewRequestFilter;
@@ -37,6 +40,8 @@ public class PollController {
     private RespondentService respondentService;
     @Autowired
     private OptionService optionService;
+    @Autowired
+    private QuestionService questionService;
     @Autowired
     private PollViewRequestFilter validator;
     @Autowired
@@ -86,6 +91,11 @@ public class PollController {
         Poll poll = pollService.getPollById(id);
         modelMap.addAttribute("poll", poll);
         modelMap.addAttribute("id", id);
+        try {
+            modelMap.addAttribute("pollJson", new ObjectMapper().writeValueAsString(poll));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
         return "poll";
     }
 
@@ -136,6 +146,12 @@ public class PollController {
                 if (option.getRight())
                     answers.add(option.getId());
         return answers;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/poll/{id}/getVotes", method = RequestMethod.GET)
+    public List getPollVotes(@PathVariable Long id) {
+        return questionService.getVotesForPoll(id);
     }
 
     /**

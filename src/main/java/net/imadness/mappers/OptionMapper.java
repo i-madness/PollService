@@ -28,6 +28,5 @@ public interface OptionMapper {
     public void deleteOption(@Param("id") Long id);
 
     @Select("SELECT * FROM option WHERE questionid=#{question.id} ")
-    public List<Option> getOptionsForQuestion(@Param("question")Question question);
-
+    public List<Option> getOptionsForQuestion(@Param("question") Question question);
 }

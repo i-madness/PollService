@@ -6,10 +6,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 
 /**
- * Класс-сущность, описывающий опрос
+ * Класс-сущность, описывающий опрос / тест
+ * Тест: обычный экземпляр класса. В БД для в таблице poll для поля isTest default-значением ставится true
+ * Опрос: экземпляр класса с единственным вопросом
  */
 public class Poll {
-
     private Long id;
     private String name;
     private String description;
