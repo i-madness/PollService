@@ -57,6 +57,12 @@
         <div class="panel-body"><c:out value="${poll.description}"/></div>
     </div>
     <div class="col-md-offset-1 col-md-10"><%--Container for questions--%>
+        <c:if test="${!poll.test}">
+            <div class="panel panel-default" id="poll-results" style="display: none">
+                <div id="poll-results-title" class="panel-heading"></div>
+                <div id="poll-results-body" class="panel-body"></div>
+            </div>
+        </c:if>
         <c:forEach var="question" items="${poll.questions}">
             <div data-id="${question.id}" class="question-panel panel panel-default">
                 <div class="panel-heading"><h4><c:out value="${question.name}"/></h4></div>
@@ -72,7 +78,8 @@
         </c:forEach>
     </div>
     <div align="center">
-        <button id="complete-btn" class="btn btn-info">Завершить прохождение опроса</button>
+        <c:if test="${poll.test}"><button id="complete-btn" class="btn btn-info">Завершить прохождение опроса</button></c:if>
+        <c:if test="${!poll.test}"><button id="complete-btn" class="btn btn-info">Голосовать</button></c:if>
     </div>
 
 
@@ -111,6 +118,9 @@
 <script src="/resources/js/bootstrap.min.js"></script>
 <script src="/resources/js/view-scripts/poll.js"></script>
 <%-- Привязка функции обмена данных к кнопке; передача в функцию ID --%>
-<script>$('body').on('click','#complete-btn',function(){ exchangeData('${id}') });</script>
+<script>
+    $('body').on('click','#complete-btn',function(){ exchangeData('${id}',${poll.test}) });
+    var curPoll = ${pollJson};
+</script>
 </body>
 </html>

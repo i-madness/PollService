@@ -59,8 +59,11 @@
             </ul>
         </div>
         <div class="btn-group">
-            <button id="new-poll" class="btn btn-primary btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
-                <span class="glyphicon glyphicon-plus-sign"></span> Новый опрос
+            <button id="new-poll" class="btn btn-primary btn-lg" type="button" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-th-list"></span> Новый опрос
+            </button>
+            <button id="new-test" class="btn btn-primary btn-lg" type="button" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-list-alt"></span> Новый тест
             </button>
         </div>
     </div>

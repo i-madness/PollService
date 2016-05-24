@@ -27,7 +27,10 @@ public interface QuestionMapper {
     @Delete("DELETE FROM question WHERE id=#{id};")
     public void deleteQuestion(@Param("id") Long id);
 
-    @Select("SELECT * FROM question WHERE pollid=#{id}")
-    public List<Question> getQuestionsForPoll(@Param("poll") Long pollid);
+    @Select("SELECT * FROM question WHERE pollid=#{poll.id}")
+    public List<Question> getQuestionsForPoll(@Param("poll") Poll poll);
+
+    /*@Select("SELECT * FROM question WHERE pollid=#{id}")
+    public List<Question> getQuestionsForPoll(@Param("id") Long pollid);*/
 
 }

@@ -81,7 +81,9 @@ public class QuestionService {
      * @return список из вопросов
      */
     public List<Question> getQuestionsForPoll(Long pollId) {
-        List<Question> result = questionMapper.getQuestionsForPoll(pollId);
+        Poll poll = new Poll();
+        poll.setId(pollId);
+        List<Question> result = questionMapper.getQuestionsForPoll(poll);
         for (Question question : result) {
             question.setOptions(optionMapper.getOptionsForQuestion(question));
         }

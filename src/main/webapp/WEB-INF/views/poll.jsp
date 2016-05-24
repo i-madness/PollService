@@ -57,12 +57,10 @@
         <div class="panel-body"><c:out value="${poll.description}"/></div>
     </div>
     <div class="col-md-offset-1 col-md-10"><%--Container for questions--%>
-        <c:if test="${poll.test}">
+        <c:if test="${!poll.test}">
             <div class="panel panel-default" id="poll-results" style="display: none">
                 <div id="poll-results-title" class="panel-heading"></div>
-                <div id="" class="panel-body">
-                    <table id="poll-results-body"></table>
-                </div>
+                <div id="poll-results-body" class="panel-body"></div>
             </div>
         </c:if>
         <c:forEach var="question" items="${poll.questions}">

@@ -95,7 +95,7 @@ var parsePollForm = function() {
 }
 
 // добавление нового опроса
-$('body').on('click','#new-poll',function(){
+$('body').on('click','#new-test',function() {
     if (!editState || editState && confirm("Вы действительно хотите прервать редактирование опроса "+$('#poll-name').html()+"? Несохранённые изменения будут потеряны")) {
         deletedOptions = []; deletedQuestions = [];
         currentPoll = null; questions = null;

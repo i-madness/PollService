@@ -23,7 +23,10 @@ var deletedQuestions = [];
 var deletedOptions   = [];
 var editState = false;
 
-// возвращает false, если хотя бы у одного вопроса нет варианта ответа, помеченного, как правильный
+/**
+ * Возвращает false, если хотя бы у одного вопроса нет варианта ответа, помеченного, как правильный
+ * @returns {boolean}
+ */
 var checkMarkedOptions = function() {
     var noUnmarked = true; // нет непомеченных ответов
     $('.question-panel').each(function(){
@@ -35,7 +38,11 @@ var checkMarkedOptions = function() {
     return noUnmarked;
 }
 
-// оборачивает вопрос в html-код
+/**
+ * Оборачивает вопрос в html-код
+ * @param Question
+ * @returns {string}
+ */
 var wrapQuestion = function(Question) {
     var options = Question.options;
     var wrappedQuestion = '<div data-id="'+Question.id+
@@ -53,7 +60,12 @@ var wrapQuestion = function(Question) {
     return wrappedQuestion;
 };
 
-// оборачивает вариант ответа в html-код
+/**
+ * Оборачивает вариант ответа в html-код
+ * @param Option
+ * @param questionName
+ * @returns {string}
+ */
 var wrapOption = function(Option, questionName) {
     var wrappedOption = '<div data-id="'+Option.id+'" class="input-group opt-panel"><span class="input-group-addon">'+
         '<input class="is-right" name="'+questionName+'" type="radio" ';
@@ -63,7 +75,9 @@ var wrapOption = function(Option, questionName) {
     return wrappedOption;
 }
 
-// собирает данные об опросе со страницы
+/**
+ * Собирает данные об опросе со страницы
+ */
 var parsePollForm = function() {
     var questionPanels = $('.question-panel');
     var questions = [];
@@ -94,8 +108,10 @@ var parsePollForm = function() {
     });
 }
 
-// добавление нового опроса
-$('body').on('click','#new-poll',function(){
+/**
+ * Добавление нового опроса
+ */
+$('body').on('click','#new-test',function() {
     if (!editState || editState && confirm("Вы действительно хотите прервать редактирование опроса "+$('#poll-name').html()+"? Несохранённые изменения будут потеряны")) {
         deletedOptions = []; deletedQuestions = [];
         currentPoll = null; questions = null;
@@ -118,7 +134,16 @@ $('body').on('click','#new-poll',function(){
     }
 })
 
-// полная загрузка опроса с сервера и отображение на странице после выбора опроса
+/**
+ * Добавление нового теста
+ */
+$('body').on('click','#new-test',function() {
+
+}
+
+/**
+ * Полная загрузка опроса с сервера и отображение на странице после выбора опроса
+ */
 $('body').on('click','.poll-link',function(){
     if (!editState || editState && confirm("Вы действительно хотите прервать редактирование опроса "+$('#poll-name').html()+"? Несохранённые изменения будут потеряны")) {
         deletedOptions = []; deletedQuestions = [];
@@ -136,7 +161,10 @@ $('body').on('click','.poll-link',function(){
         })
     }
 });
-// редактирование опроса
+
+/**
+ * Редактирование опроса
+ */
 $('body').on('click','#edit-poll', function(){
     editState = true;
     $('#poll-name').prop('disabled',false);
@@ -154,7 +182,9 @@ $('body').on('click','#edit-poll', function(){
     $('#question-body').show();
 });
 
-// сохранение опроса: отправка данных на сервер
+/**
+ * Сохранение опроса: отправка данных на сервер
+ */
 $('body').on('click','#save-poll', function(){
     if(!checkMarkedOptions())
         return;
@@ -174,19 +204,25 @@ $('body').on('click','#save-poll', function(){
     deletedOptions = []; deletedQuestions = [];
 });
 
-// удаление варианта ответа
+/**
+ * Удаление варианта ответа
+ */
 $('body').on('click','.delete-opt', function(){
     deletedOptions.push($(this).parent().data('id'));
     $(this).parent().remove();
 })
 
-// удаление вопроса
+/**
+ * Удаление вопроса
+ */
 $('body').on('click','.delete-quest', function(){
     deletedQuestions.push($(this).parent().parent().parent().data('id'))
     $(this).parent().parent().parent().remove();
 })
 
-// удаление опроса
+/**
+ * Удаление опроса
+ */
 $('body').on('click','#delete-poll', function(){
     if (confirm("Вы действительно хотите удалить опрос "+$('#poll-name').html()+"?")) {
         if (currentPoll!=null) {
@@ -200,14 +236,18 @@ $('body').on('click','#delete-poll', function(){
     }
 })
 
-// изменение названия опроса
+/**
+ * Изменение названия опроса
+ */
 $('body').on('click','#poll-name',function(){
     if (editState) {
         $('#poll-name').html(prompt("Изменение названия опроса:",$('#poll-name').html()))
     }
 })
 
-// изменение описания опроса
+/**
+ * Изменение описания опроса
+ */
 $('body').on('click','#poll-description',function(){
     if (editState) {
         var pollName = prompt("Изменение описания опроса:",$('#poll-description').html())
@@ -216,7 +256,9 @@ $('body').on('click','#poll-description',function(){
     }
 })
 
-// изменение названия вопроса
+/**
+ * Изменение названия вопроса
+ */
 $('body').on('click','.floating-title',function(){
     if (editState) {
         var questionName = prompt("Изменение названия вопроса:",$(this).html())
@@ -228,7 +270,9 @@ $('body').on('click','.floating-title',function(){
     }
 })
 
-// добавление нового опроса
+/**
+ * Добавление нового опроса
+ */
 $('body').on('click','#add-quest',function(){
     var newQuestion = prompt("Введите название вопроса:")
     if (newQuestion == "") {
@@ -238,7 +282,9 @@ $('body').on('click','#add-quest',function(){
     $('#question-body').append(wrapQuestion({ name: newQuestion, id: 0, options: null}))
 })
 
-// добавление нового варианта ответов
+/**
+ * Добавление нового варианта ответов
+ */
 $('body').on('click','.add-opt',function(){
     var newOption = prompt("Введите название варианта:")
     if (newOption == "") {

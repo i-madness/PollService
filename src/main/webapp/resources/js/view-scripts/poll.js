@@ -49,14 +49,28 @@ var getTestAnswers = function (poll_id) {
  * Получает статистику по опросу с сервера и проводит соответствующие изменения на странице
  * @param pollId id опроса
  */
-var getPollResults = function (pollId) {
+var getPollResults = function (pollId, votedId) {
     $.get("/poll/"+pollId+"/getVotes", function (votes) {
         $('.question-panel').hide();
+        $('#complete-btn').hide();
         $('#poll-results').fadeIn(200);
-        $('#poll-results-title').html('Результаты опроса' + curPoll.name);
-        for (var i = 0; i < votes.length; i++)
-            $('#poll-results-body').append('<tr><td>'+curPoll.questions[0].options[i].name+'</td>'+
-                                                '<td>'+votes[i]+'</td></tr>');
+        $('#poll-results-title').html('<h4>Результаты опроса:</h4>');
+        var votesSummary = 0;
+        $(votes).each(function () {
+           votesSummary += this;
+        });
+        for (var i = 0; i < votes.length; i++) {
+            var percent = 100 * votes[i] / votesSummary;
+            $('#poll-results-body').append(
+                '<div class="row" data-id="'+curPoll.questions[0].options[i].id+'">' +
+                    '<div class="col-md-5">'+curPoll.questions[0].options[i].content+'</div>'+
+                    '<div class="col-md-7">' +
+                        '<div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="'+votes[i]+'" aria-valuemin="0" aria-valuemax="100" style="width: '+percent+'%;">'+votes[i]+'</div></div>' +
+                    '</div>' +
+                '</div>'
+            );
+        }
+        $('#poll-results-body').find('[data-id = '+votedId+']').find('.col-md-5').first().wrapInner("<b></b>");
     });
 }
 
@@ -65,10 +79,10 @@ var getPollResults = function (pollId) {
  */
 
 $(window).load(function () {
-    $('#respondent-modal').modal({
+    /*$('#respondent-modal').modal({
         keyboard: false,
         backdrop: "static"
-    });
+    });*/
     $('#respondent-name').tooltip();
     $('#respondent-email').tooltip();
 });
@@ -81,10 +95,6 @@ $('body').on('click', '#accept-data', function () {
     var email = $('#respondent-email').val();
     if (!/^[а-яА-ЯёЁa-zA-Z0-9]+$/.test(respondentName)) {
         $('#respondent-name').tooltip('toggle');
-        return false;
-    }
-    if (!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email)) {
-        $('#respondent-email').tooltip('toggle');
         return false;
     }
     respondent = {id: 0, name: respondentName, email: email, polls: null, answers: null};
@@ -107,7 +117,7 @@ var exchangeData = function (pollId, isTest) {
         url: "/poll/" + pollId + "/save",
         contentType: 'application/json',
         data: JSON.stringify(holder),
-        success: isTest ? getTestAnswers(pollId) : getPollResults(pollId)
+        success: isTest ? getTestAnswers(pollId) : getPollResults(pollId, answers[0])
     });
 };
 
