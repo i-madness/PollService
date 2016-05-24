@@ -43,7 +43,7 @@
 </div>
 
 <div class="page-header col-md-8 col-md-offset-2">
-    <h3>Статистика по опросам</h3>
+    <h3>Статистика опросов и тестов</h3>
 </div>
 
 <div class="container col-md-8 col-md-offset-2" style="margin-top: 20px;">

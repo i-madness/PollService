@@ -51,7 +51,7 @@
     </div>
 </div>
 
-<div class="container col-md-8 col-lg-offset-2" style="margin-top: 20px;">
+<div class="container col-md-8 col-lg-offset-2" style="margin-top: 20px; margin-bottom: 50px">
     <div class="panel panel-default">
         <div class="panel-heading"><h3><c:out value="${poll.name}"/></h3></div>
         <div class="panel-body"><c:out value="${poll.description}"/></div>

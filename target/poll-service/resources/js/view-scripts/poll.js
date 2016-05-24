@@ -31,7 +31,7 @@ var getTestAnswers = function (poll_id) {
             else
                 $(this).addClass('panel-danger')
         })
-        $('#complete-btn').addClass('disabled');
+        $('#complete-btn').remove();
         $('small').html(respondent.name + ',');
         $('.progress-bar').html(rightCount + " правильных ответов из " + answers.length);
         var percent = 100 * rightCount / rightAns.length;

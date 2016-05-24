@@ -42,7 +42,7 @@
       <file leaf-file-name="HomeController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/imadness/controllers/HomeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
+            <state relative-caret-position="19">
               <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
               <folding />
             </state>
@@ -52,28 +52,28 @@
       <file leaf-file-name="PollController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/imadness/controllers/PollController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
+            <state relative-caret-position="-76">
               <caret line="106" column="6" selection-start-line="106" selection-start-column="6" selection-end-line="106" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="manage.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/view-scripts/manage.js">
+      <file leaf-file-name="stats.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/stats.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3456">
-              <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
+            <state relative-caret-position="855">
+              <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="manage.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manage.jsp">
+      <file leaf-file-name="bootstrap.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/css/bootstrap.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="61" column="63" selection-start-line="61" selection-start-column="63" selection-end-line="61" selection-end-column="63" />
+            <state relative-caret-position="437">
+              <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -150,12 +150,10 @@
         <option value="$PROJECT_DIR$/create_poll_service_db.sql" />
         <option value="$PROJECT_DIR$/src/main/java/net/imadness/mappers/PollMapper.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/auth.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/stats.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/prefs.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/net/imadness/controllers/HomeController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/js/view-scripts/home.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/css/bootstrap.css" />
         <option value="$PROJECT_DIR$/src/main/java/net/imadness/mappers/OptionMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/imadness/mappers/extended/RespondentOptionMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/imadness/entities/Poll.java" />
@@ -163,10 +161,12 @@
         <option value="$PROJECT_DIR$/src/main/java/net/imadness/services/dal/PollService.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/imadness/mappers/QuestionMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/imadness/services/dal/QuestionService.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/poll.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/js/view-scripts/poll.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manage.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/resources/js/view-scripts/poll.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/resources/css/bootstrap.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/poll.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/js/view-scripts/manage.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/stats.jsp" />
       </list>
     </option>
   </component>
@@ -1402,7 +1402,7 @@
       <workItem from="1463901018279" duration="2193000" />
       <workItem from="1463926089031" duration="12259000" />
       <workItem from="1464026909519" duration="9082000" />
-      <workItem from="1464078047599" duration="6835000" />
+      <workItem from="1464078047599" duration="11082000" />
     </task>
     <servers />
   </component>
@@ -1439,7 +1439,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="411538000" />
+    <option name="totallyTimeSpent" value="415785000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -1728,14 +1728,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/stats.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="113" column="43" selection-start-line="113" selection-start-column="33" selection-end-line="113" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/ref.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -1777,14 +1769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121885">
-          <caret line="6415" column="13" selection-start-line="6415" selection-start-column="13" selection-end-line="6415" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/imadness/mappers/OptionMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
@@ -1797,14 +1781,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-54">
           <caret line="44" column="114" selection-start-line="44" selection-start-column="114" selection-end-line="44" selection-end-column="114" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/imadness/controllers/HomeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1825,25 +1801,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/view-scripts/poll.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-399">
-          <caret line="72" column="71" selection-start-line="72" selection-start-column="71" selection-end-line="72" selection-end-column="71" />
-          <folding>
-            <marker date="1464085866766" expanded="true" signature="3119:3126" placeholder="..." />
-            <marker date="1464085866766" expanded="true" signature="3119:3139" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/poll.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="62" column="63" selection-start-line="62" selection-start-column="63" selection-end-line="62" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/imadness/mappers/extended/RespondentOptionMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="458">
@@ -1860,11 +1817,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/imadness/controllers/PollController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manage.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="106" column="6" selection-start-line="106" selection-start-column="6" selection-end-line="106" selection-end-column="6" />
+        <state relative-caret-position="525">
+          <caret line="76" column="28" selection-start-line="76" selection-start-column="28" selection-end-line="76" selection-end-column="37" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/imadness/controllers/HomeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/poll.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-824">
+          <caret line="53" column="92" selection-start-line="53" selection-start-column="92" selection-end-line="53" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/view-scripts/poll.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1271">
+          <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+          <folding>
+            <marker date="1464089758585" expanded="true" signature="3107:3114" placeholder="..." />
+            <marker date="1464089758585" expanded="true" signature="3107:3127" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1876,18 +1868,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/manage.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/view-scripts/manage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="61" column="63" selection-start-line="61" selection-start-column="63" selection-end-line="61" selection-end-column="63" />
+        <state relative-caret-position="212">
+          <caret line="128" column="36" selection-start-line="128" selection-start-column="36" selection-end-line="128" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/view-scripts/manage.js">
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/imadness/controllers/PollController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3456">
-          <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
+        <state relative-caret-position="-76">
+          <caret line="106" column="6" selection-start-line="106" selection-start-column="6" selection-end-line="106" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/stats.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
           <folding />
         </state>
       </provider>
