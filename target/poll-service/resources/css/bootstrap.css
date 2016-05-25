@@ -5747,7 +5747,7 @@ button.close {
   left: 0;
   z-index: 1060;
   display: none;
-  max-width: 276px;
+  max-width: 600px;
   padding: 1px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -6405,6 +6405,9 @@ button.close {
 }
 .floating-button {
     float: right;
+    display: block;
+    top: 0;
+    position: static;
 }
 .editing-data {
     text-decoration: underline;
@@ -6438,4 +6441,8 @@ textarea {
 
 #current-group-selection {
     margin-left: 3px;
+}
+
+.popover-inner button {
+    margin: 4px;
 }

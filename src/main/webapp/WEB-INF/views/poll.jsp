@@ -53,8 +53,13 @@
 
 <div class="container col-md-8 col-lg-offset-2" style="margin-top: 20px; margin-bottom: 50px">
     <div class="panel panel-default">
-        <div class="panel-heading"><h3><c:out value="${poll.name}"/></h3></div>
-        <div class="panel-body"><c:out value="${poll.description}"/></div>
+        <div class="panel-heading">
+            <h3><c:out value="${poll.name}"/></h3>
+        </div>
+        <div class="panel-body">
+            <c:out value="${poll.description}"/>
+            <button id="share-btn" class="btn btn-success floating-button" data-container="body" data-toggle="popover" data-placement="bottom"><span class="glyphicon glyphicon-share"></span> Поделиться</button>
+        </div>
     </div>
     <div class="col-md-offset-1 col-md-10"><%--Container for questions--%>
         <c:if test="${!poll.test}">

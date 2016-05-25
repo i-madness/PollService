@@ -324,5 +324,5 @@ $('body').on('click','.add-opt',function(){
         return;
     }
     $(this).parent().parent().parent().children('.panel-body').
-    append(wrapOption({ content: newOption, id: 0, right: false },$(this).parent().parent().children('.floating-title').html() ))
+    append(wrapOption( { content: newOption, id: 0, right: false },$(this).parent().parent().children('.floating-title').html() ))
 })

@@ -127,3 +127,18 @@ var exchangeData = function (pollId, isTest) {
 $('body').on('click', '.opt-content', function () {
     $(this).parent().find('.answer').prop('checked', true)
 });
+
+$('#share-btn').popover({
+    html : true,
+    content : '<div class="popover-inner" align="center"><button id="share-link" class="btn btn-default">Ссылка</button>' +
+              '<button id="share-html" class=" btn btn-default">HTML-код для вставки</button></div>' +
+              '<input style="display: none" id="share-input" class="form-control popover-inner" type="text">'
+})
+
+$('body').on('click', '#share-link', function () {
+    $('#share-input').show().val(window.location.href)
+})
+
+$('body').on('click', '#share-html', function () {
+    $('#share-input').show().val('<iframe width="500" height="500" src="'+window.location.href+'"></iframe>')
+})
