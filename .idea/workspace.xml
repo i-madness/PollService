@@ -72,8 +72,8 @@
       <file leaf-file-name="poll.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/view-scripts/poll.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="553">
-              <caret line="142" column="107" selection-start-line="142" selection-start-column="107" selection-end-line="142" selection-end-column="107" />
+            <state relative-caret-position="2546">
+              <caret line="149" column="64" selection-start-line="149" selection-start-column="64" selection-end-line="149" selection-end-column="64" />
               <folding>
                 <element signature="e#84#211#0" expanded="false" />
                 <element signature="e#2034#2160#0" expanded="false" />
@@ -81,10 +81,20 @@
                 <element signature="e#3622#3706#0" expanded="false" />
                 <element signature="e#4131#4335#0" expanded="false" />
                 <element signature="e#4824#4925#0" expanded="false" />
-                <marker date="1464198563148" expanded="true" signature="3107:3114" placeholder="..." />
-                <marker date="1464198563148" expanded="true" signature="3107:3127" placeholder="..." />
-                <marker date="1464198563148" expanded="true" signature="5341:5354" placeholder="..." />
+                <marker date="1464204845996" expanded="true" signature="3107:3114" placeholder="..." />
+                <marker date="1464204845996" expanded="true" signature="3107:3127" placeholder="..." />
+                <marker date="1464204845996" expanded="true" signature="5425:5438" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2584">
+              <caret line="136" column="17" selection-start-line="136" selection-start-column="17" selection-end-line="136" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -126,7 +136,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/applicationContext.xml" />
         <option value="$PROJECT_DIR$/src/main/java/util/MailVerificationException.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/imadness/util/MailVerificationException.java" />
@@ -157,7 +166,6 @@
         <option value="$PROJECT_DIR$/src/main/java/net/imadness/security/SecurityConfig.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/js/view-scripts/prefs.js" />
         <option value="$PROJECT_DIR$/src/main/java/net/imadness/controllers/SettingsController.java" />
-        <option value="$PROJECT_DIR$/create_poll_service_db.sql" />
         <option value="$PROJECT_DIR$/src/main/java/net/imadness/mappers/PollMapper.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/auth.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/prefs.jsp" />
@@ -176,7 +184,9 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/stats.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/css/bootstrap.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/poll.jsp" />
+        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/js/view-scripts/poll.js" />
+        <option value="$PROJECT_DIR$/create_poll_service_db.sql" />
       </list>
     </option>
   </component>
@@ -520,40 +530,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="imadness" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Poll Service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PollService" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="imadness" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1413,7 +1389,7 @@
       <workItem from="1463926089031" duration="12259000" />
       <workItem from="1464026909519" duration="9082000" />
       <workItem from="1464078047599" duration="11504000" />
-      <workItem from="1464195938799" duration="2669000" />
+      <workItem from="1464195938799" duration="5595000" />
     </task>
     <servers />
   </component>
@@ -1450,11 +1426,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="418876000" />
+    <option name="totallyTimeSpent" value="421802000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -1470,7 +1446,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21354167" sideWeight="0.49618322" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21354167" sideWeight="0.49618322" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21614583" sideWeight="0.5038168" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1625" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1594,14 +1570,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="54" column="16" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/imadness/services/management/StatisticsService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="657">
@@ -1695,13 +1663,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="855">
           <caret line="45" column="35" selection-start-line="45" selection-start-column="35" selection-end-line="45" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/create_poll_service_db.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="769">
-          <caret line="135" column="1" selection-start-line="135" selection-start-column="1" selection-end-line="135" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1891,10 +1852,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2584">
+          <caret line="136" column="17" selection-start-line="136" selection-start-column="17" selection-end-line="136" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/create_poll_service_db.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="135" column="1" selection-start-line="135" selection-start-column="1" selection-end-line="135" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/js/view-scripts/poll.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="142" column="107" selection-start-line="142" selection-start-column="107" selection-end-line="142" selection-end-column="107" />
+        <state relative-caret-position="2546">
+          <caret line="149" column="64" selection-start-line="149" selection-start-column="64" selection-end-line="149" selection-end-column="64" />
           <folding>
             <element signature="e#84#211#0" expanded="false" />
             <element signature="e#2034#2160#0" expanded="false" />
@@ -1902,9 +1879,9 @@
             <element signature="e#3622#3706#0" expanded="false" />
             <element signature="e#4131#4335#0" expanded="false" />
             <element signature="e#4824#4925#0" expanded="false" />
-            <marker date="1464198563148" expanded="true" signature="3107:3114" placeholder="..." />
-            <marker date="1464198563148" expanded="true" signature="3107:3127" placeholder="..." />
-            <marker date="1464198563148" expanded="true" signature="5341:5354" placeholder="..." />
+            <marker date="1464204845996" expanded="true" signature="3107:3114" placeholder="..." />
+            <marker date="1464204845996" expanded="true" signature="3107:3127" placeholder="..." />
+            <marker date="1464204845996" expanded="true" signature="5425:5438" placeholder="..." />
           </folding>
         </state>
       </provider>

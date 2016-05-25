@@ -136,9 +136,11 @@ $('#share-btn').popover({
 })
 
 $('body').on('click', '#share-link', function () {
-    $('#share-input').show().val(window.location.href)
+    $('#share-input').show().val(window.location.href);
+    $('#share-input')[0].select();
 })
 
 $('body').on('click', '#share-html', function () {
-    $('#share-input').show().val('<iframe width="500" height="500" src="'+window.location.href+'"></iframe>')
+    $('#share-input').show().val('<iframe width="500" height="500" src="'+window.location.href+'"></iframe>');
+    $('#share-input')[0].select();
 })

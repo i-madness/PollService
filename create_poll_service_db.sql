@@ -14,8 +14,7 @@ CREATE TABLE "poll"(
  "id" BigSerial NOT NULL,
  "name" Varchar NOT NULL,
  "description" Varchar,
- "istest" Boolean DEFAULT true NOT NULL,
- "ismultyoptional" Boolean DEFAULT false NOT NULL
+ "istest" Boolean DEFAULT true NOT NULL
 )
 ;
 
@@ -62,7 +61,8 @@ ALTER TABLE "poll_respondent" ADD CONSTRAINT "pk_poll_respondent" PRIMARY KEY ("
 CREATE TABLE "question"(
  "id" BigSerial NOT NULL,
  "name" Varchar NOT NULL,
- "pollid" Bigint
+ "pollid" Bigint,
+ "ismultioptional" Boolean DEFAULT false NOT NULL
 )
 ;
 

@@ -128,6 +128,9 @@ $('body').on('click', '.opt-content', function () {
     $(this).parent().find('.answer').prop('checked', true)
 });
 
+/**
+ * Включаем информер для кнопки "Поделиться", отображаем там нужный контент
+ */
 $('#share-btn').popover({
     html : true,
     content : '<div class="popover-inner" align="center"><button id="share-link" class="btn btn-default">Ссылка</button>' +
@@ -135,10 +138,18 @@ $('#share-btn').popover({
               '<input style="display: none" id="share-input" class="form-control popover-inner" type="text">'
 })
 
+/**
+ * Выставляем в поле "поделиться" ссылку на текущий опрос
+ */
 $('body').on('click', '#share-link', function () {
-    $('#share-input').show().val(window.location.href)
+    $('#share-input').show().val(window.location.href);
+    $('#share-input')[0].select();
 })
 
+/**
+ * Выставляем в поле "поделиться" код iframe для текущего опроса
+ */
 $('body').on('click', '#share-html', function () {
-    $('#share-input').show().val('<iframe width="500" height="500" src="'+window.location.href+'"></iframe>')
+    $('#share-input').show().val('<iframe width="500" height="500" src="'+window.location.href+'"></iframe>');
+    $('#share-input')[0].select();
 })
