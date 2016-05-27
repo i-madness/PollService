@@ -59,7 +59,7 @@
                     <p>Авторизация прошла успешно</p>
                 </div>
                 </c:if>
-                    <div class="input-group input-sm">
+                <div class="input-group input-sm">
                     <label class="input-group-addon" for="username"><span class="glyphicon glyphicon-user"></span></label>
                     <input type="text" class="form-control" id="username" name="ssoId" placeholder="Введите логин" required>
                 </div>
