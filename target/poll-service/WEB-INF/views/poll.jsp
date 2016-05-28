@@ -68,6 +68,12 @@
                 <div id="poll-results-body" class="panel-body"></div>
             </div>
         </c:if>
+        <div data-id="${question.id}" class="question-panel panel panel-default">
+            <div class="panel-body">
+                Представьтесь, пожалуйста:
+                <input class="form-control" id="respondent-name" />
+            </div>
+        </div>
         <c:forEach var="question" items="${poll.questions}">
             <div data-id="${question.id}" class="question-panel panel panel-default">
                 <div class="panel-heading"><h4><c:out value="${question.name}"/></h4></div>

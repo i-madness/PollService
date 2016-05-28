@@ -51,11 +51,11 @@
             <div class="alert" id="alert-msg" style="display: none"></div>
             <div class="alert alert-warning">Расположение файла настроек:<br><b>${settingsPath}</b></div>
             <div style="margin-left: 13%">
-                <div class="input-group input-sm col-md-10"">
+                <div class="input-group input-sm col-md-10">
                     <label class="input-group-addon" for="username">Логин</label>
                     <input type="text" class="form-control" id="username" name="ssoId" placeholder="Введите логин" value="${settings.login}">
                 </div>
-                <div class="input-group input-sm col-md-10"">
+                <div class="input-group input-sm col-md-10">
                     <label class="input-group-addon" for="password">Пароль</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Введите пароль" value="${settings.password}">
                     <a id="change-passwd" class="input-group-addon">Изменить..</a>

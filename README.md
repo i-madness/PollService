@@ -18,7 +18,7 @@
 Модель базы данных:
 <img src="http://i.imgur.com/vi4qrzG.png">
 
-<h4>Интерфейс приложения</h4> (кликабельно)
+<!-- <h4>Интерфейс приложения</h4> (кликабельно)
 <table>
   <tr>
     <td>Главная страница</td>
@@ -37,3 +37,4 @@
     <td><a target="_blank" href="http://imgur.com/LbiFgmQ"><img src="http://i.imgur.com/LbiFgmQm.png" title="source: imgur.com" /></a></td>
   </tr>
 </table>
+-->
