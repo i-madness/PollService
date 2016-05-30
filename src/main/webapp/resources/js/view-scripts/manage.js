@@ -49,8 +49,8 @@ var checkMarkedOptions = function() {
 var wrapQuestion = function(Question) {
     var options = Question.options;
     var wrappedQuestion = '<div data-id="'+Question.id+
-        '" class="panel panel-default question-panel"><div class="panel-heading"><span class="floating-title">'+
-        Question.name+'</span><div class="floating-button btn-group">' +
+        '" class="panel panel-default question-panel"><div class="panel-heading"><span class="floating-title quest-heading">'+
+        Question.name+'<br><input class="enable-multioptional" type="checkbox"/> Множество вариантов ответа</span><div class="floating-button btn-group">' +
         '<button class="btn btn-info add-opt"><span class="glyphicon glyphicon-plus"></span></button>'+
         '<button class="delete-quest btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>' +
         '</div></div><div class="panel-body">';
@@ -242,7 +242,7 @@ $('body').on('click','#save-poll', function(){
 $('body').on('click','.delete-opt', function(){
     deletedOptions.push($(this).parent().data('id'));
     $(this).parent().remove();
-})
+});
 
 /**
  * Удаление вопроса
@@ -250,7 +250,7 @@ $('body').on('click','.delete-opt', function(){
 $('body').on('click','.delete-quest', function(){
     deletedQuestions.push($(this).parent().parent().parent().data('id'))
     $(this).parent().parent().parent().remove();
-})
+});
 
 /**
  * Удаление опроса
@@ -266,7 +266,7 @@ $('body').on('click','#delete-poll', function(){
         $('#poll-description').removeClass('editing-data');
         editState = false;
     }
-})
+});
 
 /**
  * Изменение названия опроса
@@ -275,7 +275,7 @@ $('body').on('click','#poll-name',function(){
     if (editState) {
         $('#poll-name').html(prompt("Изменение названия опроса:",$('#poll-name').html()))
     }
-})
+});
 
 /**
  * Изменение описания опроса
@@ -286,12 +286,12 @@ $('body').on('click','#poll-description',function(){
         if (pollName = "") pollName = "(описание отсутствует)"
         $('#poll-description').html(pollName)
     }
-})
+});
 
 /**
  * Изменение названия вопроса
  */
-$('body').on('click','.floating-title',function(){
+$('body').on('click','.quest-heading',function(){
     if (editState) {
         var questionName = prompt("Изменение названия вопроса:",$(this).html())
         if (questionName == "") {
@@ -300,7 +300,7 @@ $('body').on('click','.floating-title',function(){
         }
         $(this).html(questionName)
     }
-})
+});
 
 /**
  * Добавление нового вопроса
@@ -311,8 +311,8 @@ $('body').on('click','#add-quest',function(){
         alert("Название вопроса не может быть пустым!")
         return;
     }
-    $('#question-body').append(wrapQuestion({ name: newQuestion, id: 0, options: null}))
-})
+    $('#question-body').append(wrapQuestion({ name: newQuestion, id: 0, options: null }))
+});
 
 /**
  * Добавление нового варианта ответов
@@ -325,4 +325,15 @@ $('body').on('click','.add-opt',function(){
     }
     $(this).parent().parent().parent().children('.panel-body').
     append(wrapOption( { content: newOption, id: 0, right: false },$(this).parent().parent().children('.floating-title').html() ))
-})
+});
+
+/**
+ * При клике по чекбоксу делает возможность сделать правильными несколько вариантов ответа
+ */
+$('body').on('click', '.enable-multioptional', function () {
+    var inputs = $(this).parent().parent().parent().find('.is-right');
+    if ($(this).prop('checked') == true)
+        inputs.attr('type', 'checkbox');
+    else
+        inputs.attr('type', 'radio');
+});

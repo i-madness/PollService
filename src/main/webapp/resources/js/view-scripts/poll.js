@@ -1,6 +1,6 @@
 var respondent = null;
 var answers = [];
-var rightAnswers = []
+var rightAnswers = [];
 var rightCount = 0;
 
 /**
@@ -136,7 +136,7 @@ $('#share-btn').popover({
     content : '<div class="popover-inner" align="center"><button id="share-link" class="btn btn-default">Ссылка</button>' +
               '<button id="share-html" class=" btn btn-default">HTML-код для вставки</button></div>' +
               '<input style="display: none" id="share-input" class="form-control popover-inner" type="text">'
-})
+});
 
 /**
  * Выставляем в поле "поделиться" ссылку на текущий опрос
@@ -144,7 +144,7 @@ $('#share-btn').popover({
 $('body').on('click', '#share-link', function () {
     $('#share-input').show().val(window.location.href);
     $('#share-input')[0].select();
-})
+});
 
 /**
  * Выставляем в поле "поделиться" код iframe для текущего опроса
@@ -152,4 +152,4 @@ $('body').on('click', '#share-link', function () {
 $('body').on('click', '#share-html', function () {
     $('#share-input').show().val('<iframe width="500" height="500" src="'+window.location.href+'"></iframe>');
     $('#share-input')[0].select();
-})
+});
