@@ -50,13 +50,18 @@
     <div><%--Container for buttons--%>
         <div class="btn-group">
             <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
-                Выберите опрос <span class="caret"></span>
+                <span class="glyphicon glyphicon-th-list"></span> Выберите опрос <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
                 <c:forEach var="poll" items="${polls}">
                     <li class="poll-link" data-id="${poll.id}"><a href="#"><c:out value="${poll.name}"/></a></li>
                 </c:forEach>
             </ul>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-list-alt"></span> Выберите тест <span class="caret"></span>
+            </button>
         </div>
     </div>
 
