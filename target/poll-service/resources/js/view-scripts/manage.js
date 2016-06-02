@@ -273,39 +273,50 @@ $('body').on('click','#delete-poll', function(){
  */
 $('body').on('click','#poll-name',function(){
     if (editState) {
-        $('#poll-name').html(prompt("Изменение названия опроса:",$('#poll-name').html()))
+        var pollName = prompt("Изменение названия опроса:", $('#poll-name').html())
+        if (pollName == "")
+            alert('Название опроса не может быть пустым');
+        else if (pollName == null)
+            return;
+        else
+            $('#poll-name').html(pollName);
     }
 });
 
 /**
  * Изменение описания опроса
  */
-$('body').on('click','#poll-description',function(){
+$('body').on('click','#poll-description',function() {
     if (editState) {
-        var pollName = prompt("Изменение описания опроса:",$('#poll-description').html())
-        if (pollName = "") pollName = "(описание отсутствует)"
-        $('#poll-description').html(pollName)
+        var pollDescription = prompt("Изменение описания опроса:", $('#poll-description').html())
+        if (pollDescription == "")
+            pollDescription = "(описание отсутствует)";
+        else if (pollDescription == null)
+            return;
+       else
+            $('#poll-description').html(pollDescription);
     }
 });
 
 /**
  * Изменение названия вопроса
  */
-$('body').on('click','.quest-heading',function(){
+$('body').on('click','.quest-heading',function() {
     if (editState) {
-        var questionName = prompt("Изменение названия вопроса:",$(this).html())
-        if (questionName == "") {
-            alert("Название вопроса не может быть пустым!")
-            return
-        }
-        $(this).html(questionName)
+        var questionName = prompt("Изменение названия вопроса:", $(this).html())
+        if (questionName == "")
+            alert("Название вопроса не может быть пустым!");
+        else if (questionName == null)
+            return;
+        else
+            $(this).html(questionName);
     }
 });
 
 /**
  * Добавление нового вопроса
  */
-$('body').on('click','#add-quest',function(){
+$('body').on('click','#add-quest',function() {
     var newQuestion = prompt("Введите название вопроса:")
     if (newQuestion == "") {
         alert("Название вопроса не может быть пустым!")

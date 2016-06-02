@@ -36,7 +36,6 @@ public class HomeController {
         List<Poll> tests = pollService.getTestsOnly();
         model.addAttribute("pollList", all);
         try {
-            //ObjectMapper objectMapper = new ObjectMapper();
             model.addAttribute("jsonAllList", new ObjectMapper().writeValueAsString(all));
             model.addAttribute("jsonPollList", new ObjectMapper().writeValueAsString(polls));
             model.addAttribute("jsonTestList", new ObjectMapper().writeValueAsString(tests));
