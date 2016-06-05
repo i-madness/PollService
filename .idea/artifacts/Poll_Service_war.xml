@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="Poll Service:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="poll-service-1.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="Poll Service:war exploded" />
-    </root>
-  </artifact>
-</component>
