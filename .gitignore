@@ -64,3 +64,4 @@ $RECYCLE.BIN/
 
 target/*
 .idea/*
+.idea/workspace.xml

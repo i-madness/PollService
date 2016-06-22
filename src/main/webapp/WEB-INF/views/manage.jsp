@@ -89,7 +89,7 @@
 
 <footer class="footer">
     <div class="">
-        <p class="text-muted" align="center">© sPoll 2016. Developed by <a href="https://github.com/i-madness">Valery Romanov</a>. Powered by <a href="http://spring.io/">Spring Framework</a></p>
+        <p class="text-muted" align="center">© sPoll 2016</p>
     </div>
 </footer>
 
